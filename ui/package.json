@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && mv dist ../ui-dist",
+    "build": "vite build && rm -r ../ui-dist && mv dist ../ui-dist",
     "preview": "vite preview"
   },
   "devDependencies": {
