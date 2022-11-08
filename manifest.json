@@ -2,11 +2,12 @@
   "name": "Overleaf extension",
   "version": "1.0.0",
   "description": "Extension for overleaf.com for quick home-tasks sending",
-  "manifest_version": 1,
+  "manifest_version": 2,
   "browser_action": {
     "default_icon": {
       "32": "icons/overleaf-ext-logo.png"
     },
+    "default_popup": "ui-dist/index.html",
     "default_title": "Overleaf"
   },
   "permissions": [
