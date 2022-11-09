@@ -1,5 +1,9 @@
 <script>
-	export let content
+    export let content, imageUrl
 </script>
 
-<button class="button" on:click>{content}</button>
+{#if imageUrl}
+    <button class="button" on:click>{@html imageUrl}</button>
+{:else}
+    <button class="button" on:click>{content}</button>
+{/if}
