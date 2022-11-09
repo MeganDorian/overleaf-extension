@@ -1,4 +1,5 @@
 <script context="module">
+  import Button from "./lib/Button.svelte";
   import Input from "./lib/Input.svelte"
   import Select from "./lib/Select.svelte"
 </script>
@@ -16,15 +17,19 @@
   $: selected_subject = subjects.find(e => e.key === selected_key)
   $: email = selected_subject?.email
   $: subject = selected_subject?.subject
+  let hw_number = 1
 </script>
 
 <main class="p-3">
-  <h6 class="title is-5 mt-3">Посылатор</h6>
+  <h5 class="title is-5 mt-3">Посылатор</h5>
   <navbar class="navbar is-flex is-justify-content-space-between mt-1">
-    <button class="button">Log out</button>
-    <button class="button" on:click={() => open('settings.html')}>Settings</button>
+    <Button content="Выйти" />
+    <Button on:click={() => open('settings.html')} content="Настройки"/>
   </navbar>
+
   <Select options={subjects} id="subjects" title="Предмет" bind:value={selected_key} />
   <Input id="email" label="Будет послано на" value={email} readonly />
   <Input id="subject" label="С темой" value={subject} readonly />
+  <Input id="subject" label="Номер дз" value={hw_number} type="number" />
+  <Button content="Послать" on:click={() => alert('sent')} />
 </main>

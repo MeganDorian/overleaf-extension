@@ -1,13 +1,19 @@
 <script>
     export let label = "",
+        /** @type {String | Number} */
         value = "",
         readonly = false,
-        id
+        id,
+        type = "text"
 </script>
 
 <div class="block">
     <label for={id} class="has-text-weight-bold">{label}</label>
-    <input id={id} class="input mt-2" type="text" bind:value {readonly}>
+    {#if type === "text"}
+        <input id={id} class="input mt-2" type="text" bind:value {readonly}>
+    {:else if type === "number"}
+        <input id={id} class="input mt-2" type="number" bind:value {readonly}>
+    {/if}
     <span class="focus-border"></span>
 </div>
 
