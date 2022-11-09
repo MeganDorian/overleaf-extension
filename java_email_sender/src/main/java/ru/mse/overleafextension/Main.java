@@ -14,11 +14,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         FileService.getInstance().deleteFile();
-//        try {
-//            LogManager.getLogManager().readConfiguration(Main.class.getResourceAsStream("/logging.properties"));
-//        } catch (SecurityException | IOException e1) {
-//            e1.printStackTrace();
-//        }
 
         PathHandler pathHandler = new PathHandler();
         pathHandler.addPrefixPath("/send", new SendEmailHandler());
