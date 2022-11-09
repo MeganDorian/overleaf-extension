@@ -31,6 +31,6 @@ export async function requestDoc() {
 chrome.runtime.onMessage.addListener((message, sender) => {
     console.log(`Received message: ${JSON.stringify(message)}`);
     if (message.ok) {
-        fetchDoc(message.url, "http://localhost");
+        fetchDoc(message.url, "http://localhost:19022/file");
     }
 })
