@@ -4,6 +4,8 @@
     import Menu from "src/lib/components/Menu.svelte"
     import Login from "src/lib/components/Login.svelte"
 
+    import { subjectsStore } from 'src/lib/store/subjects'
+
     router.mode.hash()
 </script>
 
