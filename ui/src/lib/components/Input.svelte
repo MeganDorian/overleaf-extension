@@ -7,7 +7,7 @@
         type = "text"
 </script>
 
-<div class="block">
+<div class="parent">
     <label for={id} class="has-text-weight-bold">{label}</label>
     {#if type === "text"}
         <input id={id} class="input mt-2" type="text" bind:value {readonly}>
@@ -47,5 +47,10 @@
     .input:focus ~ .focus-border {
         width: 100%;
         transition: 0.4s;
+    }
+
+    .parent {
+        float: left;
+        position: relative;
     }
 </style>

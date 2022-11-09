@@ -4,6 +4,9 @@
   import Select from "src/lib/components/Select.svelte"
 
   import { requestDoc } from 'src/lib/api/fetchDoc.js'
+
+  import logout from "~icons/mdi/logout?raw"
+  import settings from "~icons/mdi/cog?raw"
 </script>
 
 <script>
@@ -34,8 +37,8 @@
 <main class="p-3">
   <h5 class="title is-5 mt-3">Посылатор</h5>
   <navbar class="navbar is-flex is-justify-content-space-between mt-1">
-    <Button content="Выйти" />
-    <Button on:click={() => open('settings.html')} content="Настройки"/>
+    <Button imageUrl={logout}/>
+    <Button imageUrl={settings} on:click={() => open('settings.html')}/>
   </navbar>
 
   <Select options={subjects} id="subjects" title="Предмет" bind:value={selected_key} />
