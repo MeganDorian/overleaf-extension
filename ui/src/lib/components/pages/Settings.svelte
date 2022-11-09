@@ -3,6 +3,7 @@
 
     import Menu from "src/lib/components/Menu.svelte"
     import Login from "src/lib/components/Login.svelte"
+    import MsgView from "src/lib/components/MsgView.svelte"
 
     import { subjectsStore } from 'src/lib/store/subjects'
 
@@ -29,6 +30,8 @@
             <Route path="/" redirect={redirect_path}></Route>
             <Route path="/subject/:id" let:meta>
                 ID предмета: {meta.params.id}
+                <MsgView subject_id={meta.params.id}></MsgView> 
+                <!-- TODO: как то форсированно менять?? -->
             </Route>
             <Route path="/login"><Login /></Route>
             <Route path="/fio">Ввести имя</Route>
