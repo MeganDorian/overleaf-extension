@@ -1,24 +1,7 @@
 <script>
-    import Counter from "./lib/Counter.svelte";
-
-    let initial = 5
-
-    let h = '<h2>sample @html</h2>'
+  import { requestDoc } from './api/fetchDoc.js'
 </script>
 
-<main>
-  <button on:click={() => open('settings.html')}>Open settings</button>
-
-  <p>
-    <Counter {initial} />
-  </p>
-  <Counter />
-
-  <p>{@html h}</p>
-</main>
-
-<style>
-  p > :global(button) {
-    color: red;
-  }
-</style>
+<navbar class="navbar is-flex is-justify-content-space-around mt-2">
+  <button class="button" on:click={requestDoc}>Func</button>
+</navbar>
