@@ -24,7 +24,7 @@ public class SmtpSenderService {
     public void sendEmail(OverleafMessage overleafMessage) throws MessagingException, IOException {
         System.out.println(new Date() + "Got send email request overleafMessage: " + overleafMessage);
 
-        SmtpServiceProvider serviceProvider = overleafMessage.getUsername().contains("gmail") ? GMAIL : YANDEX;
+        SmtpServiceProvider serviceProvider = overleafMessage.getUsername().endsWith("gmail.com") ? GMAIL : YANDEX;
 
         Properties prop = new Properties();
         prop.put("mail.smtp.ssl.enable", "true");
