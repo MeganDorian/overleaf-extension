@@ -23,6 +23,7 @@ export default defineConfig({
         popup: resolve(__dirname, 'popup.html'),
         settings: resolve(__dirname, 'settings.html')
       }
-    }
+    },
+    minify: false
   }
 })
