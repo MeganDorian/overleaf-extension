@@ -13,9 +13,8 @@ public class FileHandler implements HttpHandler {
         System.out.println(new Date() + " " + FileHandler.class.getName() + " Got HTTP request: " + exchange.getRequestHeaders());
 
         exchange.startBlocking();
-        String base64 = HandlerUtils.readStream(exchange.getInputStream());
 
-        int code = FileService.getInstance().writeFile(base64);
+        int code = FileService.getInstance().writeFile(exchange.getInputStream());
 
         exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "application/json");
         exchange.getResponseSender().send("{\"code\":\""+ code +"\"}");
