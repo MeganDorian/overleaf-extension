@@ -1,5 +1,9 @@
-<script>
+<script context="module">
+    import { Route, router } from 'tinro'
+
     import Menu from "./lib/Menu.svelte";
+
+    router.mode.hash()
 </script>
 
 <div class="logo-container">
@@ -8,7 +12,18 @@
 
 <div class="div-container">
     <h1 class="font">Настройки</h1>
-    <Menu/>
+    <div class="is-flex">
+        <div>
+            <Menu/>
+        </div>
+        <div>
+            <Route path="/subject/:id" let:meta>
+                ID предмета: {meta.params.id}
+            </Route>
+            <Route path="/login">Войти в аккаунт</Route>
+            <Route path="/fio">Ввести имя</Route>
+        </div>
+    </div>
 </div>
 
 <style>
