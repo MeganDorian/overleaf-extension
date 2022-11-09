@@ -1,12 +1,13 @@
 <script>
-    export let label_name = ""
-    export let input_value
-    export let readonly = false
+    export let label = "",
+        value = "",
+        readonly = false,
+        id
 </script>
 
-<div class="parent">
-    <label for="input">{label_name}</label>
-    <input id="input" class="input" type="text" bind:value={input_value} {readonly}>
+<div class="block">
+    <label for={id} class="has-text-weight-bold">{label}</label>
+    <input id={id} class="input mt-2" type="text" bind:value {readonly}>
     <span class="focus-border"></span>
 </div>
 
@@ -37,11 +38,5 @@
     .input:focus ~ .focus-border {
         width: 100%;
         transition: 0.4s;
-    }
-
-    .parent {
-        float: left;
-        margin: 40px 3%;
-        position: relative;
     }
 </style>
