@@ -1,7 +1,8 @@
 <script context="module">
     import { Route, router } from 'tinro'
 
-    import Menu from "./lib/Menu.svelte";
+    import Menu from "./lib/Menu.svelte"
+    import Login from './lib/Login.svelte'
 
     router.mode.hash()
 </script>
@@ -20,7 +21,7 @@
             <Route path="/subject/:id" let:meta>
                 ID предмета: {meta.params.id}
             </Route>
-            <Route path="/login">Войти в аккаунт</Route>
+            <Route path="/login"><Login /></Route>
             <Route path="/fio">Ввести имя</Route>
         </div>
     </div>
