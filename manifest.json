@@ -10,8 +10,22 @@
     "default_popup": "ui/dist/popup.html",
     "default_title": "Overleaf"
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.overleaf.com/*"
+      ],
+      "js": [
+        "inject-get-link.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [ "get-link.js" ],
   "permissions": [
     "tabs",
-    "storage"
+    "storage",
+    "cookies",
+    "*://*.overleaf.com/",
+    "*://*.overleaf.com/*"
   ]
 }

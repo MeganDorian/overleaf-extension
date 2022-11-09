@@ -16,3 +16,20 @@ export async function fetchDoc(docUrl, nativeUrl) {
         .then(json => json.code)
         .catch(console.error)
 }
+
+export async function requestDoc() {
+    console.log("Doc requested... Cookies:");
+    console.log(chrome.cookies);
+
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        chrome.tabs.sendMessage(tabs[0].id, "My message");
+    });
+
+}
+
+chrome.runtime.onMessage.addListener((message, sender) => {
+    console.log(`Received message: ${JSON.stringify(message)}`);
+    if (message.ok) {
+        fetchDoc(message.url, "http://localhost");
+    }
+})
