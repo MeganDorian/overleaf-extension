@@ -6,6 +6,11 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 export default defineConfig({
   plugins: [svelte()],
   base: '/ui/dist/',
+  resolve: {
+    alias: {
+      src: path.resolve(__dirname, './src'),
+    },
+  },
   build: {
     rollupOptions: {
       input: {

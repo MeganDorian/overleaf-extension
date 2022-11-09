@@ -1,7 +1,7 @@
 <script context="module">
-  import Button from "./lib/Button.svelte";
-  import Input from "./lib/Input.svelte"
-  import Select from "./lib/Select.svelte"
+  import Button from "src/lib/components/Button.svelte"
+  import Input from "src/lib/components/Input.svelte"
+  import Select from "src/lib/components/Select.svelte"
 </script>
 
 <script>

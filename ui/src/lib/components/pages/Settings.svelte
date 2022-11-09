@@ -1,10 +1,16 @@
 <script context="module">
     import { Route, router } from 'tinro'
 
-    import Menu from "./lib/Menu.svelte"
-    import Login from './lib/Login.svelte'
+    import Menu from "src/lib/components/Menu.svelte"
+    import Login from "src/lib/components/Login.svelte"
 
     router.mode.hash()
+</script>
+
+<script>
+    let authorized = false
+    // get subject from store
+    $: redirect_path = !authorized ? "/login" : "/subject/cpp"
 </script>
 
 <div class="logo-container">
@@ -18,6 +24,7 @@
             <Menu/>
         </div>
         <div>
+            <Route path="/" redirect={redirect_path}></Route>
             <Route path="/subject/:id" let:meta>
                 ID предмета: {meta.params.id}
             </Route>
