@@ -8,7 +8,7 @@ export default defineConfig({
   base: '/ui/dist/',
   resolve: {
     alias: {
-      src: path.resolve(__dirname, './src'),
+      src: resolve(__dirname, './src'),
     },
   },
   build: {
