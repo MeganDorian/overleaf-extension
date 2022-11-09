@@ -3,8 +3,8 @@ package ru.mse.overleafextension.control;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Base64;
 
 public final class FileService {
 
@@ -23,10 +23,13 @@ public final class FileService {
         return INSTANCE;
     }
 
-    public synchronized int writeFile(String base64) throws IOException {
-        byte[] decodedBytes = Base64.getDecoder().decode(base64);
+    public synchronized int writeFile(InputStream is) throws IOException {
         OutputStream out = new FileOutputStream(FILE);
-        out.write(decodedBytes);
+        byte[] buf = new byte[8192];
+        int length;
+        while ((length = is.read(buf)) != -1) {
+            out.write(buf, 0, length);
+        }
         out.close();
 
         this.code = (int)(Math.random() * Integer.MAX_VALUE);
