@@ -1,24 +1,35 @@
-<script>
-    import Counter from "./lib/Counter.svelte";
-
-    let initial = 5
-
-    let h = '<h2>sample @html</h2>'
+<script context="module">
+  import Button from "./lib/Button.svelte";
+  import Input from "./lib/Input.svelte"
+  import Select from "./lib/Select.svelte"
 </script>
 
-<main>
-  <button on:click={() => open('settings.html')}>Open settings</button>
+<script>
+  let subjects = [
+    {
+      key: 'algo-krav',
+      name: 'Алгоритмы Кравченко',
+      email: 'krav@test.com',
+      subject: '[ИТМО] ДЗ 5 Фамилия Имя'
+    }
+  ]
+  let selected_key = ''
+  $: selected_subject = subjects.find(e => e.key === selected_key)
+  $: email = selected_subject?.email
+  $: subject = selected_subject?.subject
+  let hw_number = 1
+</script>
 
-  <p>
-    <Counter {initial} />
-  </p>
-  <Counter />
+<main class="p-3">
+  <h5 class="title is-5 mt-3">Посылатор</h5>
+  <navbar class="navbar is-flex is-justify-content-space-between mt-1">
+    <Button content="Выйти" />
+    <Button on:click={() => open('settings.html')} content="Настройки"/>
+  </navbar>
 
-  <p>{@html h}</p>
+  <Select options={subjects} id="subjects" title="Предмет" bind:value={selected_key} />
+  <Input id="email" label="Будет послано на" value={email} readonly />
+  <Input id="subject" label="С темой" value={subject} readonly />
+  <Input id="subject" label="Номер дз" value={hw_number} type="number" />
+  <Button content="Послать" on:click={() => alert('sent')} />
 </main>
-
-<style>
-  p > :global(button) {
-    color: red;
-  }
-</style>
