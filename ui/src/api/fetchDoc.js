@@ -1,4 +1,5 @@
 
+// Returns what localhost returns
 export async function fetchDoc(docUrl, nativeUrl) {
     let content = await fetch(docUrl)
         .then(response => response.blob())
