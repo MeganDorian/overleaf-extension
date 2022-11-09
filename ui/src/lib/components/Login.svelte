@@ -1,6 +1,6 @@
 <script context="module">
-	import Button from './Button.svelte'
-	import Input from './Input.svelte'
+	import Button from 'src/lib/components/Button.svelte'
+	import Input from 'src/lib/components/Input.svelte'
 </script>
 
 <script>
