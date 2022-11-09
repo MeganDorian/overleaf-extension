@@ -1,1 +1,26 @@
-@import 'bulma/css/bulma.css'
+@import 'bulma/css/bulma.css';
+
+h1.font {
+    font-size: 1.42rem;
+    line-height: 150%;
+    margin-bottom: 3.42rem;
+    font-weight: 600;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: bold;
+}
+
+.div-container {
+    margin: 0 auto;
+    max-width: 530px;
+    padding-top: 4rem;
+    min-height: calc(100vh - 4rem - 52px);
+    align-self: center;
+}
