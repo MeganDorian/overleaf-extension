@@ -1,13 +1,13 @@
 
 // Returns what localhost returns
-export async function fetchDoc(docUrl, nativeUrl) {
+export async function fetchDoc(docUrl) {
     let content = await fetch(docUrl)
         .then(response => response.blob())
 
     console.log(`Fetched ${content.size} bytes...`);
 
     return fetch(
-        nativeUrl,
+        "http://localhost:19022/file",
         {
             method: "POST",
             body: content
@@ -18,19 +18,24 @@ export async function fetchDoc(docUrl, nativeUrl) {
         .catch(console.error)
 }
 
-export async function requestDoc() {
+let lastCallback;
+
+export async function requestDoc(callback) {
     console.log("Doc requested... Cookies:");
     console.log(chrome.cookies);
+
+    lastCallback = callback;
 
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
         chrome.tabs.sendMessage(tabs[0].id, "My message");
     });
-
 }
 
-chrome.runtime.onMessage.addListener((message, sender) => {
+chrome.runtime.onMessage.addListener(async (message) => {
     console.log(`Received message: ${JSON.stringify(message)}`);
     if (message.ok) {
-        fetchDoc(message.url, "http://localhost:19022/file");
+        fetchDoc(message.url, "http://localhost:19022/file")
+            .then(lastCallback)
+            .catch(console.error);
     }
 })

@@ -2,6 +2,8 @@
   import Button from "src/lib/components/Button.svelte"
   import Input from "src/lib/components/Input.svelte"
   import Select from "src/lib/components/Select.svelte"
+
+  import { requestDoc } from 'src/lib/api/fetchDoc.js'
 </script>
 
 <script>
@@ -18,7 +20,16 @@
   $: email = selected_subject?.email
   $: subject = selected_subject?.subject
   let hw_number = 1
+
+  function cb (i) {
+    console.log(`Called back! ${i}`);
+  }
 </script>
+
+<navbar class="navbar is-flex is-justify-content-space-around mt-2">
+  <button class="button" on:click={() => requestDoc(cb)}>Load PDF</button>
+</navbar>
+
 
 <main class="p-3">
   <h5 class="title is-5 mt-3">Посылатор</h5>
