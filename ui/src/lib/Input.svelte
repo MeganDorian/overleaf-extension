@@ -13,6 +13,10 @@
         <input id={id} class="input mt-2" type="text" bind:value {readonly}>
     {:else if type === "number"}
         <input id={id} class="input mt-2" type="number" bind:value {readonly}>
+    {:else if type === "email"}
+        <input id={id} class="input mt-2" type="email" bind:value {readonly}>
+    {:else if type === "password"}
+        <input id={id} class="input mt-2" type="password" bind:value {readonly}>
     {/if}
     <span class="focus-border"></span>
 </div>
@@ -26,7 +30,6 @@
 
     .input {
         border: 0;
-        padding: 4px 0;
         border-bottom: 1px solid #ccc;
         background-color: transparent;
     }

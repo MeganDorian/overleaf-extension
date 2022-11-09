@@ -39,7 +39,7 @@
     ]
 </script>
 
-<div class="sidebar">
+<div class="sidebar mr-5">
     <aside class="menu">
         <p class="menu-label">Предметы</p>
         <ul class="menu-list">
@@ -49,7 +49,7 @@
         </ul>
         <p class="menu-label">Пользователь</p>
         <ul class="menu-list">
-            <li><a href="/login" use:active>Логин</a></li>
+            <li><a href="/login" use:active>Почта</a></li>
             <li><a href="/fio" use:active>ФИО</a></li>
         </ul>
     </aside>
