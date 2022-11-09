@@ -8,11 +8,9 @@ import ru.mse.overleafextension.boundary.FileHandler;
 import ru.mse.overleafextension.boundary.SendEmailHandler;
 import ru.mse.overleafextension.control.FileService;
 
-import java.io.IOException;
-
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         FileService.getInstance().deleteFile();
 
         PathHandler pathHandler = new PathHandler();

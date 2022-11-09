@@ -14,7 +14,9 @@ public final class FileService {
 
     private int code;
 
-    private FileService() {}
+    private FileService() {
+        this.FILE.deleteOnExit();
+    }
 
     public static FileService getInstance() {
         if(INSTANCE == null) {
@@ -25,7 +27,7 @@ public final class FileService {
 
     public synchronized int writeFile(InputStream is) throws IOException {
         OutputStream out = new FileOutputStream(FILE);
-        byte[] buf = new byte[8192];
+        byte[] buf = new byte[16384];
         int length;
         while ((length = is.read(buf)) != -1) {
             out.write(buf, 0, length);
