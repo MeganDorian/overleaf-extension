@@ -1,10 +1,12 @@
 <script context="module">
 	import Input from 'src/lib/components/Input.svelte'
+
 </script>
 
 <script>
-	let email = ''
-	let password = ''
+	export let email = ''
+	export let password = ''
+	export let smtpService = "gmail"
 </script>
 
 <content>
@@ -26,6 +28,4 @@
 	</div>
 	<Input id="login-email" label="Ваша почта (логин)" type="email" bind:value={email} />
 	<Input id="login-email" label="Пароль приложения" type="password" bind:value={password} />
-
-	
 </content>

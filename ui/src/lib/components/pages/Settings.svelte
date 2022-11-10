@@ -4,16 +4,23 @@
     import Menu from "src/lib/components/Menu.svelte"
     import Login from "src/lib/components/Login.svelte"
     import MsgView from "src/lib/components/MsgView.svelte"
+    import { onMount } from 'svelte';
 
     // import { subjectsStore } from 'src/lib/store/subjects'
 
-    router.mode.hash()
+    router.mode.hash();
 </script>
 
 <script>
     // let authorized = false
     // get subject from store
     // $: redirect_path = !authorized ? "/login" : "/subject/cpp"
+    let login = {}
+    onMount(() => {
+        
+        login = JSON.parse(localStorage.getItem('login'));
+        debugger;
+    })
 </script>
 
 <div class="logo-container">
@@ -31,7 +38,7 @@
             <Route path="/subject/:id" let:meta>
                 <MsgView subject_id={meta.params.id}></MsgView>
             </Route>
-            <Route path="/login"><Login /></Route>
+            <Route path="/login"><Login email={login.email} password={login.password} smtpService={login.smtpService} /></Route>
             <Route path="/template">Ввести имя</Route>
         </div>
     </div>

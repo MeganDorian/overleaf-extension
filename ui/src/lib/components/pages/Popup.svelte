@@ -36,9 +36,9 @@
 
         let content = JSON.stringify(
             {
-                "username": "mishakollins68@gmail.com",
+                "username": "4319788@gmail.com",
                 "password": "",
-                "toAddress": "julie.meh@yandex.ru",
+                "toAddress": "4319788@gmail.com",
                 "text": "Отправляю домашнюю работу",
                 "subject": subject_replaced,
                 "code": fileCode,

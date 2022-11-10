@@ -3,10 +3,19 @@
 
     import { subjectsStore } from 'src/lib/store/subjects'
     import Button from 'src/lib/components/Button.svelte'
+
+    import Login, {saveEmail} from 'src/lib/components/Login.svelte'
 </script>
 
 <script>
+
     $: subjects = $subjectsStore?.subjects
+
+    function saveAllPages() {
+        let login = saveEmail();
+        localStorage.removeItem('login');
+        localStorage.setItem('login', JSON.stringify(login));
+    }
 </script>
 
 <div class="sidebar mr-5">
@@ -22,10 +31,9 @@
             <li><a href="/login" use:active>Почта</a></li>
             <li><a href="/template" use:active>Шаблоны</a></li>
         </ul>
+        <Button content="Сохранить" on:click={saveAllPages} class="mt-2" />
     </aside>
 </div>
-
-<Button content="Сохранить" on:click={() => alert('Hello')} class="mt-2" />
 
 <style>
     .sidebar {
