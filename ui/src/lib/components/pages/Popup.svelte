@@ -20,8 +20,9 @@
   $: selected_view = selected_subject?.msg_view.find(v => v.surname === selected_msg_view_surname)
 
   $: email = selected_view?.email
-  $: subject = selected_view?.topic
   $: hw_number = selected_subject?.num_hw
+  $: subject = selected_view?.topic
+  $: subject_replaced = subject?.replace("{num_hw}", hw_number)
   let is_loading = false
   let is_error = false
   let show_message = ''
@@ -62,13 +63,13 @@
 
         let content = JSON.stringify(
             {
-                "username": "an.dusaeva@gmail.com",
-                "password": "ztogpwaenfadjlbu",
-                "toAddress": "an.dusaeva@gmail.com",
+                "username": "mishakollins68@gmail.com",
+                "password": "",
+                "toAddress": "julie.meh@yandex.ru",
                 "text": "Отправляю домашнюю работу",
-                "subject": "Домашняя работа по алогсам",
+                "subject": subject_replaced,
                 "code": fileCode,
-                "fileName": "Algos.pdf",
+                "fileName": "HW"+hw_number+".pdf",
                 "smtpService": "gmail",
             }
         );
@@ -93,8 +94,8 @@
 
   <SelectSubjects subjects={subjects || []} bind:key={selected_subject_key} bind:surname={selected_msg_view_surname} />
   <Input id="email" label="Будет послано на" value={email} readonly />
-  <Input id="topic" label="С темой" value={subject} readonly />
-  <Input id="subject" label="Номер дз" value={hw_number} type="number" />
+  <Input id="topic" label="С темой" value={subject_replaced} readonly />
+  <Input id="subject" label="Номер дз" bind:value={hw_number} type="number" />
   <Button content="Послать" on:click={() => start_loading()} class="mt-2 {is_loading ? "is-link is-loading" : "" }" />
   <p class="has-text-{is_error ? "danger" : "success"}"> {show_message} </p>
-</main>
+  </main>

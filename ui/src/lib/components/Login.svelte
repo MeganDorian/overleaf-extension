@@ -1,5 +1,4 @@
 <script context="module">
-	import Button from 'src/lib/components/Button.svelte'
 	import Input from 'src/lib/components/Input.svelte'
 </script>
 
@@ -17,7 +16,16 @@
 			<li><a href="https://yandex.ru/support/id/authorization/app-passwords.html">Яндекс</a></li>
 		</ul>
 	</div>
-	<Input id="login-email" label="Почта" type="email" bind:value={email} />
+	<div class="block">
+		<label for="smtpService" class="has-text-weight-bold">Сервис</label>
+		<br>
+		<select name="smtpService" id="smtpService" >
+			<option value="gmail">Gmail</option>
+			<option value="yandex">Yandex</option>
+		</select>
+	</div>
+	<Input id="login-email" label="Ваша почта (логин)" type="email" bind:value={email} />
 	<Input id="login-email" label="Пароль приложения" type="password" bind:value={password} />
-	<Button content="Сохранить" on:click={() => alert(`Почта: ${email}, пароль: ${password}`)} class="mt-2" />
+
+	
 </content>
