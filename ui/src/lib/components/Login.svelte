@@ -22,7 +22,7 @@
 
 <main>
   <h5 class="title is-5">Войти в аккаунт</h5>
-  <div class="notification is-info content" style="background-color: #4caf50">
+  <div class="notification is-success is-light content">
     Для входа в аккаунт введите почту и пароль приложения почты (НЕ АККАУНТА),
     который можно получить по следующим инструкциям:
     <ul>

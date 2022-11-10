@@ -1,10 +1,12 @@
 <script context="module">
   import { Route, router } from 'tinro'
 
-  import Menu from 'src/lib/components/Menu.svelte'
+  import AddSubject from 'src/lib/components/AddSubject.svelte'
   import Login from 'src/lib/components/Login.svelte'
+  import Menu from 'src/lib/components/Menu.svelte'
   import MsgView from 'src/lib/components/MsgView.svelte'
   import Template from 'src/lib/components/Template.svelte'
+  import UserData from 'src/lib/components/UserData.svelte'
 
   import { settingsStore } from 'src/lib/store/settings'
 
@@ -15,7 +17,6 @@
   // let authorized = false
   // get subject from store
   // $: redirect_path = !authorized ? "/login" : "/subject/cpp"
-  import AddSubject from 'src/lib/components/AddSubject.svelte'
 </script>
 
 <div class="logo-container">
@@ -40,6 +41,7 @@
       </Route>
       <Route path="/add"><AddSubject /></Route>
       <Route path="/template"><Template /></Route>
+      <Route path="/user_data"><UserData /></Route>
     </div>
   </div>
 </div>
