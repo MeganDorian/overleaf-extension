@@ -46,8 +46,11 @@
         console.log('Отправлено')
     } else {
         is_error = true
-        show_message = 'error'
         console.log('Сервер не отвечает')
+        response.text()
+          .then(text => {
+            show_message = text;
+          })
     }
   }
   function requestDocCallback (info) {
