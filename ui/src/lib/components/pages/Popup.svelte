@@ -22,8 +22,30 @@
   $: hw_number = selected_subject?.hw_number
 
   function requestDocCallback (id) {
-    // TODO: send json with provided id
     console.log('requestDocCallback with id', id)
+
+        let content = JSON.stringify(
+            {
+                "username": "mishakollins68@gmail.com",
+                "password": "",
+                "toAddress": "julie.meh@yandex.ru",
+                "text": "Отправляю домашнюю работу",
+                "subject": "Домашняя работа по алогсам",
+                "code": id,
+                "fileName": "Algos.pdf"
+            }
+        );
+
+        return fetch(
+            "http://localhost:19022/send",
+            {
+                method: "POST",
+                body: content
+            }
+        )
+            .then(res => res.json())
+            .then(json => json.code)
+            .catch(console.error)
   }
 </script>
 
