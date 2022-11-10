@@ -5,21 +5,17 @@
 
   import { requestDoc } from 'src/lib/api/fetchDoc.js'
 
+  import { subjectsStore } from 'src/lib/store/subjects'
+
   import logout from "~icons/mdi/logout?raw"
   import settings from "~icons/mdi/cog?raw"
 </script>
 
 <script>
-  let subjects = [
-    {
-      key: 'algo-krav',
-      name: 'Алгоритмы Кравченко',
-      email: 'krav@test.com',
-      subject: '[ИТМО] ДЗ 5 Фамилия Имя'
-    }
-  ]
+  $: subjects = $subjectsStore?.subjects
+
   let selected_key = ''
-  $: selected_subject = subjects.find(e => e.key === selected_key)
+  $: selected_subject = subjects?.find(e => e.key === selected_key)
   $: email = selected_subject?.email
   $: subject = selected_subject?.subject
   let hw_number = 1

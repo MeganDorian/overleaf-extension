@@ -5,7 +5,7 @@
 <script>
     export let subject_id
 
-    $: subject_views = $subjectsStore?.subjects.filter((s) => s.subject_name === subject_id)[0]?.msg_view
+    $: subject_views = $subjectsStore?.subjects.filter((s) => s.key === subject_id)[0]?.msg_view
 </script>
 
 <div class="block">

@@ -12,8 +12,8 @@
     <aside class="menu">
         <p class="menu-label">Предметы</p>
         <ul class="menu-list">
-            {#each (subjects || []) as { subject_name, ru_name } }
-                <li><a href="/subject/{subject_name}" use:active>{ru_name}</a></li>
+            {#each (subjects || []) as { key, name } }
+                <li><a href="/subject/{key}" use:active>{name}</a></li>
             {/each}
         </ul>
         <p class="menu-label">Пользователь</p>

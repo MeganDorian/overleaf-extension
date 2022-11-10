@@ -61,8 +61,8 @@ let text = 'Здравствуйте! Отправляю ДЗ {num_hw}';
 
 let all_data = {
     'subjects':
-        [{ 'subject_name': 'algo', 'ru_name': subjects[0], 'msg_view': [] },
-        { 'subject_name': 'diskr', 'ru_name': subjects[1], 'msg_view': [] }
+        [{ 'key': 'algo', 'name': subjects[0], 'msg_view': [] },
+        { 'key': 'diskr', 'name': subjects[1], 'msg_view': [] }
         ],
     'msg_body': 'Здравствуйте! Отправляю ДЗ {num_hw}'
 }
