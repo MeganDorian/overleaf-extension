@@ -1,32 +1,6 @@
 import { writable, get } from 'svelte/store'
 
-const initial_store = {
-	subjects: [
-		{
-			subject_name: 'algorithms',
-			ru_name: 'Алгоритмы',
-			msg_view: [
-				{
-					surname: 'Кравченко',
-					email: 'kravchenko@gmail.com',
-					topic: '[ИТМО] ДЗ {number}',
-				},
-			],
-		},
-		{
-			subject_name: 'discrete-math',
-			ru_name: 'Дисретная математика',
-			msg_view: [
-				{
-					surname: 'Гориховский',
-					email: 'gorihovsky@gmail.com',
-					topic: 'ДЗ {number}. {fio}'
-				}
-			]
-		}
-	],
-	msg_body: 'Здравствуйте! Отправляю дз',
-}
+import { c_all_data } from 'src/templates'
 
 const storage = chrome.storage
 const storage_key = "subjects"
@@ -55,7 +29,7 @@ export const subjectsStore = subjectsStoreInitializer()
 storage.local.get(storage_key, (result) => {
 	let data = result[storage_key]
 	if (data === undefined) {
-		subjectsStore.set(initial_store)
+		subjectsStore.set(c_all_data)
 	} else {
 		subjectsStore.set(data)
 	}

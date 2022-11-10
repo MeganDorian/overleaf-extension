@@ -1,45 +1,40 @@
+<script context="module">
+    import { subjectsStore } from 'src/lib/store/subjects'
+</script>
+
 <script>
-    import {c_all_data} from "src/templates" 
-    export let subject_id;
-    let id = 0;
+    export let subject_id
+
+    $: subject_views = $subjectsStore?.subjects.filter((s) => s.subject_name === subject_id)[0]?.msg_view
 </script>
 
 <div class="block">
+    {#if subject_views}
+        {#each subject_views as item}
+            <h4 class="title is-4">
+                {item.surname}
+                <button class="delete"></button>
+            </h4>
+            <span class="label">Email</span>
+            <p class="notification">
+                {item.email}
+            </p>
+            <!-- <div class="control">
+              <input class="input" type="email" value={item.email} disabled>
+            </div> -->
 
-    {#if subject_id === 'algo'}   
-        id = 0
-    {:else if subject_id === "diskr"}
-        id = 1
+            <span class="label">Тема</span>
+            <p class="notification">
+                {item.topic}
+            </p>
+            <!-- <div class="control">
+              <input class="input" type="email" value={item.topic} disabled>
+            </div> -->
+
+            <span class="label">Текст сообщения</span>
+            <p class="notification">
+                {$subjectsStore.msg_body}
+            </p>
+        {/each}
     {/if}
-    
-    {#each c_all_data.subjects[id].msg_view as item}
-        <h4 class="title is-4">
-            {item.surname}        
-            <button class="delete"></button>
-        </h4>
-        <label class="label">Email</label>
-        <p class="notification">
-            {item.email}
-        </p>
-        <!-- <div class="control">
-          <input class="input" type="email" value={item.email} disabled>
-        </div> -->
-        
-        <label class="label">Тема</label>
-        <p class="notification">
-            {item.topic}
-        </p>
-        <!-- <div class="control">
-          <input class="input" type="email" value={item.topic} disabled>
-        </div> -->
-
-        <label class="label">Текст сообщения</label>
-        <p class="notification">
-            {c_all_data.msg_body}
-        </p>
-
-    {/each}
-
-
 </div>
-
