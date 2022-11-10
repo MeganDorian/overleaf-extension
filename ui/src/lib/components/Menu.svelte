@@ -2,8 +2,6 @@
     import { active } from 'tinro'
 
     import { subjectsStore } from 'src/lib/store/subjects'
-    import { settingsStore } from 'src/lib/store/settings'
-    import Button from 'src/lib/components/Button.svelte'
 </script>
 
 <script>
@@ -26,7 +24,6 @@
             <li><a href="/login" use:active>Почта</a></li>
             <li><a href="/template" use:active>Шаблоны</a></li>
         </ul>
-        <Button content="Сохранить" on:click={settingsStore.save} class="mt-2" />
     </aside>
 </div>
 
