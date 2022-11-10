@@ -19,7 +19,7 @@ h1 {
 
 .div-container {
     margin: 0 auto;
-    max-width: 530px;
+    max-width: 670px;
     padding-top: 4rem;
     min-height: calc(100vh - 4rem - 52px);
     align-self: center;
