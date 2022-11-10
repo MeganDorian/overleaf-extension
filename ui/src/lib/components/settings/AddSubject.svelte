@@ -1,7 +1,7 @@
 <script context="module">
   import Button from 'src/lib/components/Button.svelte'
   import Input from 'src/lib/components/Input.svelte'
-  import Placeholders from 'src/lib/components/Placeholders.svelte'
+  import Placeholders from 'src/lib/components/settings/Placeholders.svelte'
 
   import { subjectsStore } from 'src/lib/store/subjects'
 </script>

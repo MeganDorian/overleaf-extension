@@ -1,12 +1,12 @@
 <script context="module">
   import { Route, router } from 'tinro'
 
-  import AddSubject from 'src/lib/components/AddSubject.svelte'
-  import Login from 'src/lib/components/Login.svelte'
-  import Menu from 'src/lib/components/Menu.svelte'
-  import MsgView from 'src/lib/components/MsgView.svelte'
-  import Template from 'src/lib/components/Template.svelte'
-  import UserData from 'src/lib/components/UserData.svelte'
+  import AddSubject from 'src/lib/components/settings/AddSubject.svelte'
+  import Login from 'src/lib/components/settings/Login.svelte'
+  import Menu from 'src/lib/components/settings/Menu.svelte'
+  import MsgView from 'src/lib/components/settings/MsgView.svelte'
+  import Template from 'src/lib/components/settings/Template.svelte'
+  import UserData from 'src/lib/components/settings/UserData.svelte'
 
   import { settingsStore } from 'src/lib/store/settings'
 

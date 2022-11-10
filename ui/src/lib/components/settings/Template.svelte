@@ -1,5 +1,5 @@
 <script context="module">
-  import Placeholders from './Placeholders.svelte'
+  import Placeholders from 'src/lib/components/settings/Placeholders.svelte'
 
   import { settingsStore } from 'src/lib/store/settings'
 </script>

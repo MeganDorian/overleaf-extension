@@ -1,5 +1,5 @@
 <script context="module">
-  import Input from './Input.svelte'
+  import Input from 'src/lib/components/Input.svelte'
 
   import { settingsStore } from 'src/lib/store/settings'
 </script>
