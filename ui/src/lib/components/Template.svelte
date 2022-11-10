@@ -4,20 +4,12 @@
 </script>
 
 <main>
-  <h5 class="title is-5">Шаблон</h5>
-
-  <div class="block">
-    <Input
-      id="fio"
-      label="Ваше ФИО"
-      type="text"
-      bind:value={$settingsStore.fio} />
-    <br />
-    <label for="msg" class="has-text-weight-bold">Шаблон сообщения</label>
-    <br />
-    <textarea id="msg" class="textarea" bind:value={$settingsStore.msg_body} />
-  </div>
-</main>
+    <h5 class="title is-5">Шаблон текста письма</h5>
+  
+    <div class="block">
+      <textarea id="msg" class="textarea" bind:value={$settingsStore.msg_body} />
+    </div>
+  </main>
 
 <style>
   textarea {

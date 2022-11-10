@@ -26,7 +26,9 @@
 
   $: email = selected_view?.email
   $: subject = selected_view?.topic
+  $: body = $settingsStore.msg_body
   $: subject_replaced = subject?.replace('{num_hw}', $settingsStore.num_hw)
+  $: body_replaced = body?.replace('{num_hw}', $settingsStore.num_hw)
   let is_loading = false
   let is_error = false
   let show_message = ''
@@ -77,12 +79,12 @@
     let content = JSON.stringify({
       username: $settingsStore.user_email,
       password: $settingsStore.password,
-      toAddress: '4319788@gmail.com',
-      text: 'Отправляю домашнюю работу',
+      toAddress: email,
+      text: body_replaced,
       subject: subject_replaced,
       code: fileCode,
       fileName: 'HW' + $settingsStore.num_hw + '.pdf',
-      smtpService: 'gmail',
+      smtpService: $settingsStore.smtpService,
     })
 
     return fetch('http://localhost:19022/send', {
