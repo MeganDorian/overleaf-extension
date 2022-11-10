@@ -1,12 +1,11 @@
 <script context="module">
 	import Input from 'src/lib/components/Input.svelte'
-
 </script>
 
 <script>
 	export let email = ''
 	export let password = ''
-	export let smtpService = "gmail"
+	export let smtpService = ''
 </script>
 
 <content>
@@ -21,7 +20,7 @@
 	<div class="block">
 		<label for="smtpService" class="has-text-weight-bold">Сервис</label>
 		<br>
-		<select name="smtpService" id="smtpService" >
+		<select name="smtpService" id="smtpService" bind:value={smtpService}>
 			<option value="gmail">Gmail</option>
 			<option value="yandex">Yandex</option>
 		</select>

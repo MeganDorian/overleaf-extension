@@ -12,7 +12,7 @@
     {#each (subject_views || []) as item}
         <h4 class="title is-4">
             {item.surname}
-            <button class="delete"></button>
+            <!-- <button class="delete"></button> -->
         </h4>
         <span class="label">Email</span>
         <p class="notification">

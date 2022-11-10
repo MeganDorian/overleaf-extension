@@ -2,18 +2,12 @@
     import { active } from 'tinro'
 
     import { subjectsStore } from 'src/lib/store/subjects'
+    import { settingsStore } from 'src/lib/store/settings'
     import Button from 'src/lib/components/Button.svelte'
 </script>
 
 <script>
-
     $: subjects = $subjectsStore?.subjects
-
-    function saveAllPages() {
-        let login = saveEmail();
-        localStorage.removeItem('login');
-        localStorage.setItem('login', JSON.stringify(login));
-    }
 </script>
 
 <div class="sidebar mr-5">
@@ -29,7 +23,7 @@
             <li><a href="/login" use:active>Почта</a></li>
             <li><a href="/template" use:active>Шаблоны</a></li>
         </ul>
-        <Button content="Сохранить" on:click={saveAllPages} class="mt-2" />
+        <Button content="Сохранить" on:click={settingsStore.save} class="mt-2" />
     </aside>
 </div>
 

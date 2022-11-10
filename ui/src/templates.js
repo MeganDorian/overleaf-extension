@@ -66,20 +66,13 @@ let all_data = {
                 'key': 'algo',
                 'name': subjects[0],
                 'msg_view': [],
-                'num_hw': 1,
             },
             {
                 'key': 'diskr',
                 'name': subjects[1],
                 'msg_view': [],
-                'num_hw': 1,
             },
         ],
-    'msg_body': 'Здравствуйте! Отправляю ДЗ {num_hw}',
-    'email': undefined,
-    'password': undefined,
-    'fio': undefined,
-    'smtpService': undefined,
 }
 
 let j = 3
