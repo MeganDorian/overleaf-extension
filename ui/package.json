@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "bulma": "^0.9.4",
+    "nanoid": "^4.0.0",
     "string-template": "^1.0.0",
     "tinro": "^0.6.12"
   }
