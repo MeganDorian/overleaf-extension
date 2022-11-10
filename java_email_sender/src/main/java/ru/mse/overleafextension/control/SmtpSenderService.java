@@ -54,7 +54,7 @@ public class SmtpSenderService {
         message.setSubject(overleafMessage.getSubject());
 
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
-        mimeBodyPart.setContent(overleafMessage.getText(), "text/html; charset=utf-8");
+        mimeBodyPart.setContent(overleafMessage.getText(), "text/plain; charset=utf-8");
 
         MimeBodyPart attachmentPart = new MimeBodyPart();
         attachmentPart.attachFile(FileService.getInstance().getFile(overleafMessage.getCode()));
