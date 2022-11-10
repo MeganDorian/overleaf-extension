@@ -29,6 +29,13 @@
   let is_error = false
   let show_message = ''
 
+  let is_overleaf = true;
+  chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+    const ADDRESS_REGEX = /https:\/\/.*\.overleaf.com\/project\/.*/;
+    let url = tabs[0].url;
+    is_overleaf = ADDRESS_REGEX.test(url);
+  });
+
   function start_loading() {
     is_loading = true
     is_error = false
@@ -97,10 +104,16 @@
     <Button imageUrl={settings} on:click={() => open('settings.html')}/>
   </navbar>
 
-  <SelectSubjects subjects={subjects || []} bind:key={selected_subject_key} bind:surname={selected_msg_view_surname} />
-  <Input id="email" label="Будет послано на" value={email} readonly />
-  <Input id="topic" label="С темой" value={subject_replaced} readonly />
-  <Input id="subject" label="Номер дз" bind:value={$settingsStore.num_hw} type="number" />
-  <Button content="Послать" on:click={() => start_loading()} class="mt-2 {is_loading ? "is-link is-loading" : "" }" />
-  <p class="has-text-{is_error ? "danger" : "success"}"> {show_message} </p>
+  {#if !is_overleaf}
+    <div class="notification is-warning">
+      Чтобы использовать расширение откройте проект Overleaf и выберите файл, который хотите отправить
+    </div>
+    {:else}
+    <SelectSubjects subjects={subjects || []} bind:key={selected_subject_key} bind:surname={selected_msg_view_surname} />
+    <Input id="email" label="Будет послано на" value={email} readonly />
+    <Input id="topic" label="С темой" value={subject_replaced} readonly />
+    <Input id="subject" label="Номер дз" bind:value={$settingsStore.num_hw} type="number" />
+    <Button content="Послать" on:click={() => start_loading()} class="mt-2 {is_loading ? 'is-link is-loading' : '' }" />
+    <p class="has-text-{is_error ? 'danger' : 'success'}"> {show_message} </p>
+  {/if}
 </main>

@@ -38,12 +38,13 @@ let lastCallback;
  * {
  *   ok: false
  *   fileName: "<.tex file name>" - can be undefined!
+ *   error: "<error description>" - can be undefined!
  * }
  */
 export async function requestDoc(callback) {
     console.log("Requested doc...");
     if (lastCallback !== undefined) {
-        console.warn("One request already in action... aborted");
+        console.warn("One request is already in action... aborted");
         return;
     }
 
@@ -63,12 +64,13 @@ chrome.runtime.onMessage.addListener(async (message) => {
     function callbackWrap(code) {
         if (lastCallback) {
             let info = {
-                fileName: message.file
-            }
+                fileName: message.file,
+                error: message.error
+            };
 
             if (code) {
                 info.ok = true;
-                info.fileCode = code
+                info.fileCode = code;
             }
             else {
                 info.ok = false;
@@ -84,5 +86,8 @@ chrome.runtime.onMessage.addListener(async (message) => {
         fetchDoc(message.url, "http://localhost:19022/file")
             .then(callbackWrap)
             .catch(console.error);
+    }
+    else {
+        callbackWrap(undefined)
     }
 })

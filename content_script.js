@@ -52,6 +52,7 @@ async function compilePdf(rootDocId) {
 }
 
 function sendError(error) {
+    log("Sending error information to popup");
     return chrome.runtime.sendMessage({
         ok: false,
         error
@@ -59,12 +60,13 @@ function sendError(error) {
 }
 
 function sendFileInfo(info) {
+    log("Sending file data to popup")
     info.ok = true;
     return chrome.runtime.sendMessage(info);
 }
 
 function makeRequest(name) {
-    log(`Requested "${name}" from injected script...`);
+    log(`Requested "${name}" from injected script`);
     window.postMessage(JSON.stringify({ name, sender: "content" }));
 }
 
