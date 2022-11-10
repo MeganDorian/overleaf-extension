@@ -14,6 +14,7 @@
     // let authorized = false
     // get subject from store
     // $: redirect_path = !authorized ? "/login" : "/subject/cpp"
+import AddSubject from "src/lib/components/AddSubject.svelte";
 </script>
 
 <div class="logo-container">
@@ -27,12 +28,12 @@
             <Menu/>
         </div>
         <div>
-            <!-- <Route path="/" redirect={redirect_path}></Route> -->
             <Route path="/subject/:id" let:meta>
                 <MsgView subject_id={meta.params.id}></MsgView>
             </Route>
             <Route path="/login"><Login /></Route>
             <Route path="/template">Ввести имя</Route>
+            <Route path="/add"><AddSubject/></Route>
         </div>
     </div>
 </div>

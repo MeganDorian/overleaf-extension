@@ -17,6 +17,9 @@
                 <li><a href="/subject/{key}" use:active>{name}</a></li>
             {/each}
         </ul>
+        <ul class="menu-list">
+            <li><a href="/add" use:active>Добавить предмет</a></li>
+        </ul>
         <p class="menu-label">Пользователь</p>
         <ul class="menu-list">
             <li><a href="/login" use:active>Почта</a></li>
