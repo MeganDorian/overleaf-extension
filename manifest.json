@@ -10,22 +10,19 @@
     "default_popup": "ui/dist/popup.html",
     "default_title": "Overleaf"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*.overleaf.com/*"
-      ],
-      "js": [
-        "content_script.js"
-      ]
-    }
-  ],
-  "web_accessible_resources": [ "injected_script.js" ],
+  "content_scripts": [{
+    "matches": [
+      "https://*.overleaf.com/*"
+    ],
+    "js": [
+      "overleaf_scripts/content.js"
+    ]
+  }],
+  "web_accessible_resources": [ "overleaf_scripts/injected.js" ],
   "permissions": [
     "tabs",
     "storage",
     "cookies",
-    "*://*.overleaf.com/",
     "*://*.overleaf.com/*"
   ]
 }

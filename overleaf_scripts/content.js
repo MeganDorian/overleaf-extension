@@ -1,6 +1,21 @@
-
 // Data:
-const OVERLEAF_COMPILE_URL="/compile?enable_pdf_caching=true";
+const INJECTED_SCRIPT_PATH = "overleaf_scripts/injected.js"
+
+const OVERLEAF_COMPILE_URL = "/compile?enable_pdf_caching=true";
+
+const LISTENERS = {
+    "csrf-token": (token) => {
+        csrfToken = token
+    },
+    "current-file": (data) => {
+        compilePdf(data.id)
+            .then(url => {
+                data.url = url;
+                sendFileInfo(data);
+            })
+            .catch(sendError);
+    }
+}
 
 let overleaf_compile_body = {
     check: "silent",
@@ -24,15 +39,15 @@ async function compilePdf(rootDocId) {
     overleaf_compile_body.rootDoc_id = rootDocId;
 
     return fetch(window.location.href + OVERLEAF_COMPILE_URL, {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "x-csrf-token": csrfToken
-            },
-            body: JSON.stringify(overleaf_compile_body)
-        })
+        method: "POST",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "x-csrf-token": csrfToken
+        },
+        body: JSON.stringify(overleaf_compile_body)
+    })
         .then(res => res.json())
         .then(json => {
             if (json.status !== 'success')
@@ -51,6 +66,8 @@ async function compilePdf(rootDocId) {
         });
 }
 
+// Upstream messaging
+// Content <-> UI
 function sendError(error) {
     log("Sending error information to popup");
     return chrome.runtime.sendMessage({
@@ -65,13 +82,15 @@ function sendFileInfo(info) {
     return chrome.runtime.sendMessage(info);
 }
 
+// Downstream messaging
+// Content <-> Injected
 function makeRequest(name) {
     log(`Requested "${name}" from injected script`);
-    window.postMessage(JSON.stringify({ name, sender: "content" }));
+    window.postMessage(JSON.stringify({name, sender: "content"}));
 }
 
 function messageListener(event) {
-    let { name, msg, sender }  = JSON.parse(event.data);
+    let {name, msg, sender} = JSON.parse(event.data);
     if (sender !== 'injected')
         return;
 
@@ -79,33 +98,21 @@ function messageListener(event) {
     LISTENERS[name](msg);
 }
 
-log("Content Script running...");
+// Downstream Transfer:
+// UI -> Content -> Injected
 chrome.runtime.onMessage.addListener(msg => {
     log(`Received message: ${msg}`);
     makeRequest("get-current-file");
 });
 
-// Script injection:
-/// Setup listeners:
-const LISTENERS = {
-    "csrf-token": (token) => { csrfToken = token },
-    "current-file": (data) => {
-        compilePdf(data.id)
-            .then(url => {
-                data.url = url;
-                sendFileInfo(data);
-            })
-            .catch(sendError);
-    }
-}
 
-// Inject:
+// Injection:
 log('Injecting script...');
 window.addEventListener("message", messageListener);
 
 let body = document.getElementsByTagName('body')[0];
 let script = document.createElement('script');
-script.setAttribute('src', chrome.runtime.getURL('injected_script.js'));
+script.setAttribute('src', chrome.runtime.getURL(INJECTED_SCRIPT_PATH));
 script.setAttribute('type', 'text/javascript');
 body.appendChild(script);
 
