@@ -1,2 +1,0 @@
-
-window.postMessage(window.csrfToken);
