@@ -5,15 +5,15 @@
     import Login from "src/lib/components/Login.svelte"
     import MsgView from "src/lib/components/MsgView.svelte"
 
-    import { subjectsStore } from 'src/lib/store/subjects'
+    // import { subjectsStore } from 'src/lib/store/subjects'
 
     router.mode.hash()
 </script>
 
 <script>
-    let authorized = false
+    // let authorized = false
     // get subject from store
-    $: redirect_path = !authorized ? "/login" : "/subject/cpp"
+    // $: redirect_path = !authorized ? "/login" : "/subject/cpp"
 </script>
 
 <div class="logo-container">
@@ -27,14 +27,12 @@
             <Menu/>
         </div>
         <div>
-            <Route path="/" redirect={redirect_path}></Route>
+            <!-- <Route path="/" redirect={redirect_path}></Route> -->
             <Route path="/subject/:id" let:meta>
-                ID предмета: {meta.params.id}
-                <MsgView subject_id={meta.params.id}></MsgView> 
-                <!-- TODO: как то форсированно менять?? -->
+                <MsgView subject_id={meta.params.id}></MsgView>
             </Route>
             <Route path="/login"><Login /></Route>
-            <Route path="/fio">Ввести имя</Route>
+            <Route path="/template">Ввести имя</Route>
         </div>
     </div>
 </div>

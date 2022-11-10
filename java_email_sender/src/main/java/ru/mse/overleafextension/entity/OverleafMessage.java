@@ -8,6 +8,7 @@ public class OverleafMessage {
     private String subject;
     private int code;
     private String fileName;
+    private String smtpService;
 
     public String getUsername() {
         return username;
@@ -65,6 +66,14 @@ public class OverleafMessage {
         this.fileName = fileName;
     }
 
+    public String getSmtpService() {
+        return smtpService;
+    }
+
+    public void setSmtpService(String smtpService) {
+        this.smtpService = smtpService;
+    }
+
     @Override
     public String toString() {
         return "OverleafMessage{" +
@@ -75,6 +84,7 @@ public class OverleafMessage {
                 ", subject='" + subject + '\'' +
                 ", code=" + code +
                 ", fileName='" + fileName + '\'' +
+                ", smtpService='" + smtpService + '\'' +
                 '}';
     }
 }

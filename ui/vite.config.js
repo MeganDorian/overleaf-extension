@@ -24,6 +24,7 @@ export default defineConfig({
         settings: resolve(__dirname, 'settings.html')
       }
     },
-    minify: false
+    minify: false,
+    sourcemap: true,
   }
 })

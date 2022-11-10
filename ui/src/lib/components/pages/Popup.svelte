@@ -10,46 +10,56 @@
 </script>
 
 <script>
-  let subjects = [
-    {
-      key: 'algo-krav',
-      name: 'Алгоритмы Кравченко',
-      email: 'krav@test.com',
-      subject: '[ИТМО] ДЗ 5 Фамилия Имя'
-    }
-  ]
-  let selected_key = ''
-  $: selected_subject = subjects.find(e => e.key === selected_key)
-  $: email = selected_subject?.email
-  $: subject = selected_subject?.subject
-  let hw_number = 1
+  $: subjects = $subjectsStore?.subjects
 
-  function cb(info) {
-    let {ok, fileCode, fileName} = info;
-    console.log('Called back!');
-    if (ok)
-      console.log(`\tFile ID: ${fileCode}`);
-    else
-      console.log("\tCan't load file :(");
-    console.log(`\tFile Name: ${fileName}`);
+  let selected_subject_key = ''
+  let selected_msg_view_surname = ''
+
+  $: selected_subject = subjects?.find(e => e.key === selected_subject_key)
+  $: selected_view = selected_subject?.msg_view.find(v => v.surname === selected_msg_view_surname)
+
+  $: email = selected_view?.email
+  $: subject = selected_view?.topic
+  $: hw_number = selected_subject?.num_hw
+
+  function requestDocCallback (id) {
+    console.log('requestDocCallback with id', id)
+
+        let content = JSON.stringify(
+            {
+                "username": "mishakollins68@gmail.com",
+                "password": "",
+                "toAddress": "julie.meh@yandex.ru",
+                "text": "Отправляю домашнюю работу",
+                "subject": "Домашняя работа по алогсам",
+                "code": id,
+                "fileName": "Algos.pdf",
+                "smtpService": "gmail",
+            }
+        );
+
+        return fetch(
+            "http://localhost:19022/send",
+            {
+                method: "POST",
+                body: content
+            }
+        )
+            .then(res => res.json())
+            .then(json => json.code)
+            .catch(console.error)
   }
 </script>
 
-<navbar class="navbar is-flex is-justify-content-space-around mt-2">
-  <button class="button" on:click={() => requestDoc(cb)}>Load PDF</button>
-</navbar>
-
-
 <main class="p-3">
-  <h5 class="title is-5 mt-3">Посылатор</h5>
   <navbar class="navbar is-flex is-justify-content-space-between mt-1">
-    <Button imageUrl={logout}/>
+    <h5 class="title is-5 mt-3">Посылатор</h5>
     <Button imageUrl={settings} on:click={() => open('settings.html')}/>
   </navbar>
 
-  <Select options={subjects} id="subjects" title="Предмет" bind:value={selected_key} />
+  <SelectSubjects subjects={subjects || []} bind:key={selected_subject_key} bind:surname={selected_msg_view_surname} />
   <Input id="email" label="Будет послано на" value={email} readonly />
-  <Input id="subject" label="С темой" value={subject} readonly />
+  <Input id="topic" label="С темой" value={subject} readonly />
   <Input id="subject" label="Номер дз" value={hw_number} type="number" />
-  <Button content="Послать" on:click={() => alert('sent')} />
+  <Button content="Послать" on:click={() => requestDoc(requestDocCallback)} class="mt-2" />
 </main>
