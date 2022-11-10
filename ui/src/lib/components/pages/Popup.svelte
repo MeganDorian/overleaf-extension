@@ -20,8 +20,9 @@
   $: selected_view = selected_subject?.msg_view.find(v => v.surname === selected_msg_view_surname)
 
   $: email = selected_view?.email
-  $: subject = selected_view?.topic
   $: hw_number = selected_subject?.num_hw
+  $: subject = selected_view?.topic
+  $: subject_replaced = subject?.replace("{num_hw}", hw_number)
 
   function requestDocCallback (info) {
     let {ok, fileCode, fileName} = info;
@@ -39,9 +40,9 @@
                 "password": "",
                 "toAddress": "julie.meh@yandex.ru",
                 "text": "Отправляю домашнюю работу",
-                "subject": "Домашняя работа по алогсам",
+                "subject": subject_replaced,
                 "code": fileCode,
-                "fileName": "Algos.pdf",
+                "fileName": "HW"+hw_number+".pdf",
                 "smtpService": "gmail",
             }
         );
@@ -67,7 +68,7 @@
 
   <SelectSubjects subjects={subjects || []} bind:key={selected_subject_key} bind:surname={selected_msg_view_surname} />
   <Input id="email" label="Будет послано на" value={email} readonly />
-  <Input id="topic" label="С темой" value={subject} readonly />
-  <Input id="subject" label="Номер дз" value={hw_number} type="number" />
+  <Input id="topic" label="С темой" value={subject_replaced} readonly />
+  <Input id="subject" label="Номер дз" bind:value={hw_number} type="number" />
   <Button content="Послать" on:click={() => requestDoc(requestDocCallback)} class="mt-2" />
 </main>
