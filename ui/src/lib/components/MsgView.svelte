@@ -18,21 +18,15 @@
         <p class="notification">
             {item.email}
         </p>
-        <!-- <div class="control">
-          <input class="input" type="email" value={item.email} disabled>
-        </div> -->
 
         <span class="label">Тема</span>
         <p class="notification">
             {item.topic}
         </p>
-        <!-- <div class="control">
-          <input class="input" type="email" value={item.topic} disabled>
-        </div> -->
 
-        <span class="label">Текст сообщения</span>
-        <p class="notification">
-            {$subjectsStore.msg_body}
-        </p>
+<!--        <span class="label">Текст сообщения</span>-->
+<!--        <p class="notification">-->
+<!--            {$subjectsStore.msg_body}-->
+<!--        </p>-->
     {/each}
 </div>

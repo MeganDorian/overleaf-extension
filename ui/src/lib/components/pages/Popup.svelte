@@ -25,15 +25,45 @@
   $: email = selected_view?.email
   $: subject = selected_view?.topic
   $: subject_replaced = subject?.replace("{num_hw}", $settingsStore.num_hw)
+  let is_loading = false
+  let is_error = false
+  let show_message = ''
 
+  function start_loading() {
+    is_loading = true
+    is_error = false
+    show_message = ''
+    requestDoc(requestDocCallback)
+  }
+  function end_loading_file() {
+    is_loading = false
+    is_error = true
+    show_message = 'Расширению не удалось получить pdf файл | Ошибка нативного сервера'
+  }
+
+  function end_loading_server(response) {
+    is_loading = false
+    if (response.ok) {
+        show_message = 'Письмо отправлено'
+        console.log('Отправлено')
+    } else {
+        is_error = true
+        console.log('Сервер не отвечает')
+        response.text()
+          .then(text => {
+            show_message = text;
+          })
+    }
+  }
   function requestDocCallback (info) {
+    
     let {ok, fileCode, fileName} = info;
     if (!ok) {
       console.warn("Callback: not ok!");
       console.warn(info);
+      end_loading_file()
       return;
     }
-
     console.log('requestDocCallback with id', fileCode)
 
         let content = JSON.stringify(
@@ -56,8 +86,7 @@
                 body: content
             }
         )
-            .then(res => res.json())
-            .then(json => json.code)
+            .then(end_loading_server)
             .catch(console.error)
   }
 </script>
@@ -72,5 +101,6 @@
   <Input id="email" label="Будет послано на" value={email} readonly />
   <Input id="topic" label="С темой" value={subject_replaced} readonly />
   <Input id="subject" label="Номер дз" bind:value={$settingsStore.num_hw} type="number" />
-  <Button content="Послать" on:click={() => requestDoc(requestDocCallback)} class="mt-2" />
+  <Button content="Послать" on:click={() => start_loading()} class="mt-2 {is_loading ? "is-link is-loading" : "" }" />
+  <p class="has-text-{is_error ? "danger" : "success"}"> {show_message} </p>
 </main>
