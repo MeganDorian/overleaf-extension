@@ -17,7 +17,7 @@
     // $: redirect_path = !authorized ? "/login" : "/subject/cpp"
     let login = {}
     onMount(() => {
-        
+
         login = JSON.parse(localStorage.getItem('login'));
         debugger;
     })
