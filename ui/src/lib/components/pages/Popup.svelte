@@ -1,5 +1,5 @@
 <script context="module">
-  // import format from "string-template"
+  import format from 'string-template'
 
   import Button from 'src/lib/components/Button.svelte'
   import Input from 'src/lib/components/Input.svelte'
@@ -25,10 +25,15 @@
   )
 
   $: email = selected_view?.email
-  $: subject = selected_view?.topic
+  $: topic = selected_view?.topic
   $: body = $settingsStore.msg_body
-  $: subject_replaced = subject?.replace('{num_hw}', $settingsStore.num_hw)
-  $: body_replaced = body?.replace('{num_hw}', $settingsStore.num_hw)
+  $: substition_dict = {
+    num_hw: $settingsStore.num_hw,
+    fio: $settingsStore.fio,
+  }
+  $: topic_replaced = format(topic || '', substition_dict)
+  $: body_replaced = format(body || '', substition_dict)
+
   let is_loading = false
   let is_error = false
   let show_message = ''
@@ -81,7 +86,7 @@
       password: $settingsStore.password,
       toAddress: email,
       text: body_replaced,
-      subject: subject_replaced,
+      subject: topic_replaced,
       code: fileCode,
       fileName: 'HW' + $settingsStore.num_hw + '.pdf',
       smtpService: $settingsStore.smtpService,
@@ -113,7 +118,7 @@
       bind:key={selected_subject_key}
       bind:surname={selected_msg_view_surname} />
     <Input id="email" label="Будет послано на" value={email} readonly />
-    <Input id="topic" label="С темой" value={subject_replaced} readonly />
+    <Input id="topic" label="С темой" value={topic_replaced} readonly />
     <Input
       id="subject"
       label="Номер дз"
