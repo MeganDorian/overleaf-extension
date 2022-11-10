@@ -19,4 +19,4 @@
   $: surname = selected_keys[1]
 </script>
 
-<Select {options} id="subjects" title="Предмет" bind:value={selected} />
+<Select {options} id="subjects" title="Преподаватель" bind:value={selected} />
