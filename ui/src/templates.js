@@ -61,15 +61,23 @@ let all_data = {'subjects':
                         ], 
                 'msg_body': 'Здравствуйте! Отправляю ДЗ {num_hw}'
                }
-
+let j = 3
 for (let i = 0; i < 3; i++) {
-    let j = 3
-    all_data.subjects[0].msg_view.push({'surname': fullnames[i], 'email': emails[i], 'topic': themes[i]})
-    all_data.subjects[1].msg_view.push({'surname': fullnames[j], 'email': emails[j], 'topic': themes[j]})
+    all_data.subjects[0].msg_view.push({'key':names[i], 'surname': fullnames[i], 'email': emails[i], 'topic': themes[i]})
+    all_data.subjects[1].msg_view.push({'key':names[j],'surname': fullnames[j], 'email': emails[j], 'topic': themes[j]})
     j++;
 }
 
-console.log(all_data.subjects[1])
-console.log(all_data.subjects[0])
+// import { subjectsStore } from 'src/lib/store/subjects.js'
+// console.log(subjectsStore.msg_body)
+
+// console.log(all_data.subjects[1])
+// console.log(all_data.subjects[0])
 
 export const c_all_data = all_data
+let d = [];
+for (let i = 0; i < c_all_data.subjects.length; i++) {
+    for (let j = 0; j < c_all_data.subjects[i].msg_view.length; j++)
+    d.push(c_all_data.subjects[i].msg_view[j])
+  }
+console.log(d)
