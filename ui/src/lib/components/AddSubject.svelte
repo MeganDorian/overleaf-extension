@@ -1,6 +1,7 @@
 <script context="module">
-  import Input from 'src/lib/components/Input.svelte'
   import Button from 'src/lib/components/Button.svelte'
+  import Input from 'src/lib/components/Input.svelte'
+  import Placeholders from 'src/lib/components/Placeholders.svelte'
 
   import { subjectsStore } from 'src/lib/store/subjects'
 </script>
@@ -34,6 +35,7 @@
 
 <menu>
   <div class="block">
+    <Placeholders which_for="для темы письма" />
     <Input
       id="subject_name"
       label="Название предмета"
