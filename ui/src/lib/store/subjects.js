@@ -40,7 +40,9 @@ function subjectsStoreInitializer() {
         },
         delete_subject: (subject_key, msg_view_ind) => {
             update((data) => {
-                let subject_ind = data.subjects.findIndex((s) => s.key === subject_key)
+                let subject_ind = data.subjects.findIndex(
+                    (s) => s.key === subject_key
+                )
                 data.subjects[subject_ind].msg_view.splice(msg_view_ind, 1)
 
                 if (data.subjects[subject_ind].msg_view.length === 0) {
