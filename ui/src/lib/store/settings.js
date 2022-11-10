@@ -1,7 +1,8 @@
 import { writable } from 'svelte/store'
 
 const initial = {
-    msg_body: "Здравствуйте! \n\nОтправляю домашнюю работу №{num_hw}. \n\nС уважением,",
+    msg_body:
+        'Здравствуйте! \n\nОтправляю домашнюю работу №{num_hw}. \n\nС уважением,',
     user_email: '',
     password: '',
     fio: '',
