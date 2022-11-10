@@ -23,10 +23,5 @@
         <p class="notification">
             {item.topic}
         </p>
-
-<!--        <span class="label">Текст сообщения</span>-->
-<!--        <p class="notification">-->
-<!--            {$subjectsStore.msg_body}-->
-<!--        </p>-->
     {/each}
 </div>
