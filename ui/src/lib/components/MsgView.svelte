@@ -1,31 +1,28 @@
+<script context="module">
+    import { subjectsStore } from 'src/lib/store/subjects'
+</script>
+
 <script>
-    import {c_all_data} from "src/templates" 
-    export let subject_id;
-    let id = 0;
+    export let subject_id
+
+    $: subject_views = $subjectsStore?.subjects.filter((s) => s.key === subject_id)[0]?.msg_view
 </script>
 
 <div class="block">
-
-    {#if subject_id === 'algo'}   
-        id = 0
-    {:else if subject_id === "diskr"}
-        id = 1
-    {/if}
-    
-    {#each c_all_data.subjects[id].msg_view as item}
+    {#each (subject_views || []) as item}
         <h4 class="title is-4">
-            {item.surname}        
+            {item.surname}
             <button class="delete"></button>
         </h4>
-        <label class="label">Email</label>
+        <span class="label">Email</span>
         <p class="notification">
             {item.email}
         </p>
         <!-- <div class="control">
           <input class="input" type="email" value={item.email} disabled>
         </div> -->
-        
-        <label class="label">Тема</label>
+
+        <span class="label">Тема</span>
         <p class="notification">
             {item.topic}
         </p>
@@ -33,13 +30,9 @@
           <input class="input" type="email" value={item.topic} disabled>
         </div> -->
 
-        <label class="label">Текст сообщения</label>
+        <span class="label">Текст сообщения</span>
         <p class="notification">
-            {c_all_data.msg_body}
+            {$subjectsStore.msg_body}
         </p>
-
     {/each}
-
-
 </div>
-

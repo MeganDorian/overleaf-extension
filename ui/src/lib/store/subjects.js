@@ -1,34 +1,8 @@
-import { writable, get } from 'svelte/store'
+import { writable } from 'svelte/store'
 
-const initial_store = {
-	subjects: [
-		{
-			subject_name: 'algorithms',
-			ru_name: 'Алгоритмы',
-			msg_view: [
-				{
-					surname: 'Кравченко',
-					email: 'kravchenko@gmail.com',
-					topic: '[ИТМО] ДЗ {number}',
-				},
-			],
-		},
-		{
-			subject_name: 'discrete-math',
-			ru_name: 'Дисретная математика',
-			msg_view: [
-				{
-					surname: 'Гориховский',
-					email: 'gorihovsky@gmail.com',
-					topic: 'ДЗ {number}. {fio}'
-				}
-			]
-		}
-	],
-	msg_body: 'Здравствуйте! Отправляю дз',
-}
+import { c_all_data } from 'src/templates'
 
-const storage = chrome.storage
+const storage = chrome.storage.local
 const storage_key = "subjects"
 
 function subjectsStoreInitializer() {
@@ -39,23 +13,24 @@ function subjectsStoreInitializer() {
 		set: (value) =>
 			update((data) => {
 				data = value
-				storage.local.set({ [storage_key]: value })
+				storage.set({ [storage_key]: value })
 				return data
 			}),
 		clear: () =>
 			update((data) => {
 				data = undefined
-				storage.local.remove(storage_key)
+				storage.remove(storage_key)
 			})
 	}
 }
 
 export const subjectsStore = subjectsStoreInitializer()
 
-storage.local.get(storage_key, (result) => {
+storage.get(storage_key, (result) => {
 	let data = result[storage_key]
 	if (data === undefined) {
-		subjectsStore.set(initial_store)
+		console.log('dump initial config:', c_all_data)
+		subjectsStore.set(c_all_data)
 	} else {
 		subjectsStore.set(data)
 	}
