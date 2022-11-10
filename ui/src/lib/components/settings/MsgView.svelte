@@ -1,10 +1,10 @@
 <script context="module">
+  import MsgViewItem from 'src/lib/components/settings/MsgViewItem.svelte'
+
   import { subjectsStore } from 'src/lib/store/subjects'
 </script>
 
 <script>
-  import MsgViewItem from 'src/lib/components/MsgViewItem.svelte'
-
   export let subject_id
 
   $: subject_views = $subjectsStore?.subjects.filter(
@@ -19,8 +19,8 @@
         {item.surname}
         <button class="delete" />
       </h4>
-      <MsgViewItem label="Email" value={item.email} />
 
+      <MsgViewItem label="Email" value={item.email} />
       <MsgViewItem label="Тема" value={item.topic} />
     </div>
   {/each}
