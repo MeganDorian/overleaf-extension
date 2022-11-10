@@ -1,51 +1,22 @@
 <script context="module">
     import { active } from 'tinro'
+
+    import { subjectsStore } from 'src/lib/store/subjects'
 </script>
 
 <script>
-    let subjects = [
-        {
-            key: "algo",
-            name: "Алгоритмы"
-        },
-        {
-            key: "diskr",
-            name: "Дискретная математика"
-        },
-        {
-            key: "fp",
-            name: "Функциональное программирование"
-        },
-        {
-            key: "angl",
-            name: "Английский язык"
-        },
-        {
-            key: "unix",
-            name: "Unix"
-        },
-        {
-            key: "ml",
-            name: "Машинное обучение"
-        },
-        {
-            key: "db",
-            name: "Базы данных"
-        },
-        {
-            key: "cpp",
-            name: "C++"
-        },
-    ]
+    $: subjects = $subjectsStore?.subjects
 </script>
 
 <div class="sidebar mr-5">
     <aside class="menu">
         <p class="menu-label">Предметы</p>
         <ul class="menu-list">
-            {#each subjects as { key, name } }
-                <li><a href="/subject/{key}" use:active>{name}</a></li>
-            {/each}
+            {#if $subjectsStore}
+                {#each subjects as { subject_name, ru_name } }
+                    <li><a href="/subject/{subject_name}" use:active>{ru_name}</a></li>
+                {/each}
+            {/if}
         </ul>
         <p class="menu-label">Пользователь</p>
         <ul class="menu-list">
