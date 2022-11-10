@@ -21,6 +21,7 @@
         login = JSON.parse(localStorage.getItem('login'));
         debugger;
     })
+import Template from "src/lib/components/Template.svelte";
 </script>
 
 <div class="logo-container">
@@ -39,7 +40,7 @@
                 <MsgView subject_id={meta.params.id}></MsgView>
             </Route>
             <Route path="/login"><Login email={login.email} password={login.password} smtpService={login.smtpService} /></Route>
-            <Route path="/template">Ввести имя</Route>
+            <Route path="/template"><Template/></Route>
         </div>
     </div>
 </div>

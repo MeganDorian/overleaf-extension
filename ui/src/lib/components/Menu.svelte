@@ -3,8 +3,6 @@
 
     import { subjectsStore } from 'src/lib/store/subjects'
     import Button from 'src/lib/components/Button.svelte'
-
-    import Login, {saveEmail} from 'src/lib/components/Login.svelte'
 </script>
 
 <script>
