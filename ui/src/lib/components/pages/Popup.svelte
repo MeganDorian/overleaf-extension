@@ -69,7 +69,7 @@
         let content = JSON.stringify(
             {
                 "username": $settingsStore.user_email,
-                "password": "",
+                "password": $settingsStore.password,
                 "toAddress": "4319788@gmail.com",
                 "text": "Отправляю домашнюю работу",
                 "subject": subject_replaced,
