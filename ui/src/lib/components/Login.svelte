@@ -19,5 +19,5 @@
 	</div>
 	<Input id="login-email" label="Почта" type="email" bind:value={email} />
 	<Input id="login-email" label="Пароль приложения" type="password" bind:value={password} />
-	<Button content="Послать" on:click={() => alert(`Почта: ${email}, пароль: ${password}`)} />
+	<Button content="Сохранить" on:click={() => alert(`Почта: ${email}, пароль: ${password}`)} class="mt-2" />
 </content>

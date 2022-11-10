@@ -1,4 +1,3 @@
-
 // Returns what localhost returns
 export async function fetchDoc(docUrl) {
     let content = await fetch(docUrl)
@@ -20,7 +19,7 @@ export async function fetchDoc(docUrl) {
 
 let lastCallback;
 
-export async function requestDoc(callback) {
+export function requestDoc(callback) {
     console.log("Doc requested... Cookies:");
     console.log(chrome.cookies);
 
@@ -31,10 +30,10 @@ export async function requestDoc(callback) {
     });
 }
 
-chrome.runtime.onMessage.addListener(async (message) => {
+chrome.runtime.onMessage.addListener((message) => {
     console.log(`Received message: ${JSON.stringify(message)}`);
     if (message.ok) {
-        fetchDoc(message.url, "http://localhost:19022/file")
+        fetchDoc(message.url)
             .then(lastCallback)
             .catch(console.error);
     }
