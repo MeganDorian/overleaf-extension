@@ -37,7 +37,7 @@
     <Button imageUrl={settings} on:click={() => open('settings.html')}/>
   </navbar>
 
-  <Select options={subjects} id="subjects" title="Предмет" bind:value={selected_key} />
+  <Select options={subjects || []} id="subjects" title="Предмет" bind:value={selected_key} />
   <Input id="email" label="Будет послано на" value={email} readonly />
   <Input id="topic" label="С темой" value={subject} readonly />
   <Input id="subject" label="Номер дз" value={hw_number} type="number" />

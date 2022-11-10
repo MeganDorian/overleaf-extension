@@ -12,11 +12,9 @@
     <aside class="menu">
         <p class="menu-label">Предметы</p>
         <ul class="menu-list">
-            {#if $subjectsStore}
-                {#each subjects as { subject_name, ru_name } }
-                    <li><a href="/subject/{subject_name}" use:active>{ru_name}</a></li>
-                {/each}
-            {/if}
+            {#each (subjects || []) as { subject_name, ru_name } }
+                <li><a href="/subject/{subject_name}" use:active>{ru_name}</a></li>
+            {/each}
         </ul>
         <p class="menu-label">Пользователь</p>
         <ul class="menu-list">
