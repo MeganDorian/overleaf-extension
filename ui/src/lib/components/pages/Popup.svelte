@@ -37,5 +37,5 @@
   <Input id="email" label="Будет послано на" value={email} readonly />
   <Input id="topic" label="С темой" value={subject} readonly />
   <Input id="subject" label="Номер дз" value={hw_number} type="number" />
-  <Button content="Послать" on:click={() => requestDoc(requestDocCallback)} />
+  <Button content="Послать" on:click={() => requestDoc(requestDocCallback)} class="mt-2" />
 </main>
