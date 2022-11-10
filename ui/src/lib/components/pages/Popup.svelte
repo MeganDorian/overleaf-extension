@@ -5,7 +5,7 @@
   import Input from 'src/lib/components/Input.svelte'
   import SelectSubjects from 'src/lib/components/SelectSubjects.svelte'
 
-  import { requestDoc } from 'src/lib/api/fetchDoc.js'
+  import { requestDoc } from 'src/lib/api/fetchDoc'
 
   import { subjectsStore } from 'src/lib/store/subjects'
   import { settingsStore } from 'src/lib/store/settings'
