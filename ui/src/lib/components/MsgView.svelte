@@ -1,8 +1,10 @@
 <script context="module">
-    import { subjectsStore } from 'src/lib/store/subjects'
+    import {subjectsStore} from 'src/lib/store/subjects'
 </script>
 
 <script>
+    import MsgViewItem from "src/lib/components/MsgViewItem.svelte";
+
     export let subject_id
 
     $: subject_views = $subjectsStore?.subjects.filter((s) => s.key === subject_id)[0]?.msg_view
@@ -10,18 +12,14 @@
 
 <div class="block">
     {#each (subject_views || []) as item}
-        <h4 class="title is-4">
-            {item.surname}
-            <!-- <button class="delete"></button> -->
-        </h4>
-        <span class="label">Email</span>
-        <p class="notification">
-            {item.email}
-        </p>
+        <div class="block">
+            <h4 class="title is-4">
+                {item.surname}
+                <button class="delete"></button>
+            </h4>
+            <MsgViewItem label="Email" value="{item.email}"/>
 
-        <span class="label">Тема</span>
-        <p class="notification">
-            {item.topic}
-        </p>
+            <MsgViewItem label="Тема" value="{item.topic}"/>
+        </div>
     {/each}
 </div>
