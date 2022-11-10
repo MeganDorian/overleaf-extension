@@ -1,5 +1,5 @@
 <script>
-    export let content, imageUrl
+    export let content = '', imageUrl = undefined
 </script>
 
 {#if imageUrl}

@@ -19,13 +19,15 @@ function returned_info(profs) {
     let num_hw = 5
     let surname = 'Ivanov'
     let name = 'Ivan Ivanovich'
-    profs[selected_prof]['theme'] = format(profs[selected_prof]['theme'], {name: name, surname: surname, num_hw: num_hw})
-    profs[selected_prof]['text'] = format(profs[selected_prof]['text'], {name: name, surname: surname, num_hw: num_hw})
-    return {'fullname': profs[selected_prof]['fullname'], 
-            'subject' : profs[selected_prof]['subject'],
-            'toAddress': profs[selected_prof]['toAddress'], 
-            'theme': profs[selected_prof]['text'],
-            'text': text}
+    profs[selected_prof]['theme'] = format(profs[selected_prof]['theme'], { name: name, surname: surname, num_hw: num_hw })
+    profs[selected_prof]['text'] = format(profs[selected_prof]['text'], { name: name, surname: surname, num_hw: num_hw })
+    return {
+        'fullname': profs[selected_prof]['fullname'],
+        'subject': profs[selected_prof]['subject'],
+        'toAddress': profs[selected_prof]['toAddress'],
+        'theme': profs[selected_prof]['text'],
+        'text': text
+    }
 }
 
 function update_num_hw(all_data) {
@@ -44,28 +46,31 @@ let emails = ['alexander.mishunin@gmail.com', 'zzzheka97+itmo-se-5-algo-2022@gma
     'geraolga91@gmail.com', 'gorihovskyvyacheslav@gmail.com', 'paveltsishevich@yandex.ru'];
 
 let subjects = ['Алгоритмы', 'Дискретная математика']
-let themes = [default_theme, default_theme, default_theme, 
-    'ИТМО ДМ 2022 ДЗ-{num_hw} {surname} {name}', 
+let themes = [default_theme, default_theme, default_theme,
+    'ИТМО ДМ 2022 ДЗ-{num_hw} {surname} {name}',
     'ИТМО. Магистратура. ДМ-2022. ДЗ-{num_hw}. {surname}', default_theme]
 
-themes = themes.map((x) => format(x, {surname: user_surname,
-                                      name: user_name, 
-                                      num_hw:"{num_hw}"})
-                    )
+themes = themes.map((x) => format(x, {
+    surname: user_surname,
+    name: user_name,
+    num_hw: "{num_hw}"
+})
+)
 
 let text = 'Здравствуйте! Отправляю ДЗ {num_hw}';
 
-let all_data = {'subjects': 
-                        [{'subject_name': 'algo', 'ru_name': subjects[0], 'msg_view': []},
-                         {'subject_name': 'diskr', 'ru_name': subjects[1], 'msg_view': []}
-                        ], 
-                'msg_body': 'Здравствуйте! Отправляю ДЗ {num_hw}'
-               }
+let all_data = {
+    'subjects':
+        [{ 'subject_name': 'algo', 'ru_name': subjects[0], 'msg_view': [] },
+        { 'subject_name': 'diskr', 'ru_name': subjects[1], 'msg_view': [] }
+        ],
+    'msg_body': 'Здравствуйте! Отправляю ДЗ {num_hw}'
+}
 
 for (let i = 0; i < 3; i++) {
     let j = 3
-    all_data.subjects[0].msg_view.push({'surname': fullnames[i], 'email': emails[i], 'topic': themes[i]})
-    all_data.subjects[1].msg_view.push({'surname': fullnames[j], 'email': emails[j], 'topic': themes[j]})
+    all_data.subjects[0].msg_view.push({ 'surname': fullnames[i], 'email': emails[i], 'topic': themes[i] })
+    all_data.subjects[1].msg_view.push({ 'surname': fullnames[j], 'email': emails[j], 'topic': themes[j] })
     j++;
 }
 

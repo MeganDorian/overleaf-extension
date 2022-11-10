@@ -24,15 +24,11 @@
   $: subject = selected_subject?.subject
   let hw_number = 1
 
-  function cb (i) {
-    console.log(`Called back! ${i}`);
+  function requestDocCallback (id) {
+    // TODO: send json with provided id
+    console.log('requestDocCallback with id', id)
   }
 </script>
-
-<navbar class="navbar is-flex is-justify-content-space-around mt-2">
-  <button class="button" on:click={() => requestDoc(cb)}>Load PDF</button>
-</navbar>
-
 
 <main class="p-3">
   <h5 class="title is-5 mt-3">Посылатор</h5>
@@ -43,7 +39,7 @@
 
   <Select options={subjects} id="subjects" title="Предмет" bind:value={selected_key} />
   <Input id="email" label="Будет послано на" value={email} readonly />
-  <Input id="subject" label="С темой" value={subject} readonly />
+  <Input id="topic" label="С темой" value={subject} readonly />
   <Input id="subject" label="Номер дз" value={hw_number} type="number" />
-  <Button content="Послать" on:click={() => alert('sent')} />
+  <Button content="Послать" on:click={() => requestDoc(requestDocCallback)} />
 </main>
