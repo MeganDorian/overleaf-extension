@@ -11,7 +11,7 @@
         <br>
         <label for="msg" class="has-text-weight-bold">Шаблон сообщения</label>
         <br>
-        <textarea id="msg" bind:value={$settingsStore.msg_body}></textarea>
+        <textarea id="msg" class="textarea" bind:value={$settingsStore.msg_body}></textarea>
     </div>
 </main>
 
