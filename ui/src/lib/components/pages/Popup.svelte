@@ -34,6 +34,7 @@
   $: topic_replaced = format(topic || '', substition_dict)
   $: body_replaced = format(body || '', substition_dict)
 
+  $: is_subject_selected = selected_subject_key !== ''
   let is_loading = false
   let is_error = false
   let show_message = ''
@@ -127,7 +128,8 @@
     <Button
       content="Послать"
       on:click={() => start_loading()}
-      class="mt-2 {is_loading ? 'is-link is-loading' : ''}" />
+      class="mt-2 {is_subject_selected ? 'is-success' : ''} {is_loading ? 'is-warning is-loading' : ''}"
+      disabled="{!is_subject_selected}" />
     <p class="has-text-{is_error ? 'danger' : 'success'}">{show_message}</p>
   {/if}
 </main>
