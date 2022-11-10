@@ -16,11 +16,11 @@
         "https://*.overleaf.com/*"
       ],
       "js": [
-        "get-link.js"
+        "content_script.js"
       ]
     }
   ],
-  "web_accessible_resources": [ "snatch-csrf-token.js" ],
+  "web_accessible_resources": [ "injected_script.js" ],
   "permissions": [
     "tabs",
     "storage",

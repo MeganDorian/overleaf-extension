@@ -23,8 +23,15 @@
   $: subject = selected_view?.topic
   $: hw_number = selected_subject?.num_hw
 
-  function requestDocCallback (id) {
-    console.log('requestDocCallback with id', id)
+  function requestDocCallback (info) {
+    let {ok, fileCode, fileName} = info;
+    if (!ok) {
+      console.warn("Callback: not ok!");
+      console.warn(info);
+      return;
+    }
+
+    console.log('requestDocCallback with id', fileCode)
 
         let content = JSON.stringify(
             {
@@ -33,7 +40,7 @@
                 "toAddress": "julie.meh@yandex.ru",
                 "text": "Отправляю домашнюю работу",
                 "subject": "Домашняя работа по алогсам",
-                "code": id,
+                "code": fileCode,
                 "fileName": "Algos.pdf",
                 "smtpService": "gmail",
             }
