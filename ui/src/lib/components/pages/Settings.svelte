@@ -32,7 +32,7 @@
                 <MsgView subject_id={meta.params.id}></MsgView>
             </Route>
             <Route path="/login"><Login /></Route>
-            <Route path="/fio">Ввести имя</Route>
+            <Route path="/template">Ввести имя</Route>
         </div>
     </div>
 </div>
