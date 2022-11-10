@@ -79,6 +79,7 @@ let all_data = {
     'email': undefined,
     'password': undefined,
     'fio': undefined,
+    'smtpService': undefined,
 }
 
 let j = 3

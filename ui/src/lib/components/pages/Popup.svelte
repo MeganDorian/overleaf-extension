@@ -17,9 +17,11 @@
   let selected_msg_view_surname = ''
 
   $: selected_subject = subjects?.find(e => e.key === selected_subject_key)
-  $: email = selected_subject?.email
-  $: subject = selected_subject?.subject
-  $: hw_number = selected_subject?.hw_number
+  $: selected_view = selected_subject?.msg_view.find(v => v.surname === selected_msg_view_surname)
+
+  $: email = selected_view?.email
+  $: subject = selected_view?.topic
+  $: hw_number = selected_subject?.num_hw
 
   function requestDocCallback (id) {
     console.log('requestDocCallback with id', id)
@@ -32,7 +34,8 @@
                 "text": "Отправляю домашнюю работу",
                 "subject": "Домашняя работа по алогсам",
                 "code": id,
-                "fileName": "Algos.pdf"
+                "fileName": "Algos.pdf",
+                "smtpService": "gmail",
             }
         );
 
