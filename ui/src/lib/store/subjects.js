@@ -38,6 +38,19 @@ function subjectsStoreInitializer() {
                 return data
             })
         },
+        delete_subject: (subject_key, msg_view_ind) => {
+            update((data) => {
+                let subject_ind = data.subjects.findIndex((s) => s.key === subject_key)
+                data.subjects[subject_ind].msg_view.splice(msg_view_ind, 1)
+
+                if (data.subjects[subject_ind].msg_view.length === 0) {
+                    data.subjects.splice(subject_ind, 1)
+                }
+
+                storage.set({ [storage_key]: data })
+                return data
+            })
+        },
         clear: () =>
             update((data) => {
                 data = undefined
