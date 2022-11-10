@@ -24,8 +24,14 @@
   $: subject = selected_subject?.subject
   let hw_number = 1
 
-  function cb (i) {
-    console.log(`Called back! ${i}`);
+  function cb(info) {
+    let {ok, fileCode, fileName} = info;
+    console.log('Called back!');
+    if (ok)
+      console.log(`\tFile ID: ${fileCode}`);
+    else
+      console.log("\tCan't load file :(");
+    console.log(`\tFile Name: ${fileName}`);
   }
 </script>
 
