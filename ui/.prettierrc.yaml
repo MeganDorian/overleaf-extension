@@ -1,0 +1,10 @@
+semi: false
+singleQuote: true
+bracketSameLine: true
+overrides:
+  - files: "*.svelte"
+    options:
+      tabWidth: 2
+  - files: "*.js"
+    options:
+      tabWidth: 4

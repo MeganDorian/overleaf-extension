@@ -5,7 +5,7 @@ import { writable } from 'svelte/store'
 import { c_all_data } from 'src/templates'
 
 const storage = chrome.storage.local
-const storage_key = "subjects"
+const storage_key = 'subjects'
 
 function subjectsStoreInitializer() {
     const { subscribe, update } = writable()
@@ -21,7 +21,9 @@ function subjectsStoreInitializer() {
         add_subject: (subject_name, msg_view) => {
             update((data) => {
                 // check if key exists
-                let existing_ind = data.subjects.findIndex((s) => s.name === subject_name)
+                let existing_ind = data.subjects.findIndex(
+                    (s) => s.name === subject_name
+                )
                 if (existing_ind !== -1) {
                     data.subjects[existing_ind].msg_view.push(msg_view)
                 } else {
@@ -40,7 +42,7 @@ function subjectsStoreInitializer() {
             update((data) => {
                 data = undefined
                 storage.remove(storage_key)
-            })
+            }),
     }
 }
 

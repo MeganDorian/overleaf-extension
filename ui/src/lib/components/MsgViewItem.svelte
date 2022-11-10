@@ -1,10 +1,10 @@
 <script>
-    export let label, value;
+  export let label, value
 </script>
 
 <main>
-    <div class="block">
-        <span class="label">{label}</span>
-        <p class="notification">{value}</p>
-    </div>
+  <div class="block">
+    <span class="label">{label}</span>
+    <p class="notification">{value}</p>
+  </div>
 </main>

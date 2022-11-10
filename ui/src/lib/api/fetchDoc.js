@@ -1,27 +1,22 @@
-
 // Returns what localhost returns
 export async function fetchDoc(docUrl) {
     let content = await fetch(docUrl)
-        .then(response => response.blob())
+        .then((response) => response.blob())
         .catch(console.error)
 
-    if (content === undefined)
-        return;
+    if (content === undefined) return
 
-    console.log(`Fetched ${content.size} bytes...`);
-    return fetch(
-        "http://localhost:19022/file",
-        {
-            method: "POST",
-            body: content
-        }
-    )
-        .then(res => res.json())
-        .then(json => json.code)
+    console.log(`Fetched ${content.size} bytes...`)
+    return fetch('http://localhost:19022/file', {
+        method: 'POST',
+        body: content,
+    })
+        .then((res) => res.json())
+        .then((json) => json.code)
         .catch(console.error)
 }
 
-let lastCallback;
+let lastCallback
 
 /*
  * callback(info)
@@ -42,22 +37,22 @@ let lastCallback;
  * }
  */
 export async function requestDoc(callback) {
-    console.log("Requested doc...");
+    console.log('Requested doc...')
     if (lastCallback !== undefined) {
-        console.warn("One request is already in action... aborted");
-        return;
+        console.warn('One request is already in action... aborted')
+        return
     }
 
-    lastCallback = callback;
+    lastCallback = callback
 
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-        chrome.tabs.sendMessage(tabs[0].id, "My message");
-    });
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, 'My message')
+    })
 }
 
 export function abortRequest() {
-    console.log('Aborting request');
-    lastCallback = undefined;
+    console.log('Aborting request')
+    lastCallback = undefined
 }
 
 chrome.runtime.onMessage.addListener(async (message) => {
@@ -65,29 +60,27 @@ chrome.runtime.onMessage.addListener(async (message) => {
         if (lastCallback) {
             let info = {
                 fileName: message.file,
-                error: message.error
-            };
+                error: message.error,
+            }
 
             if (code) {
-                info.ok = true;
-                info.fileCode = code;
+                info.ok = true
+                info.fileCode = code
+            } else {
+                info.ok = false
             }
-            else {
-                info.ok = false;
-            }
-            lastCallback(info);
+            lastCallback(info)
 
-            lastCallback = undefined;
+            lastCallback = undefined
         }
     }
 
-    console.log(`Received message: ${JSON.stringify(message)}`);
+    console.log(`Received message: ${JSON.stringify(message)}`)
     if (message.ok) {
-        fetchDoc(message.url, "http://localhost:19022/file")
+        fetchDoc(message.url, 'http://localhost:19022/file')
             .then(callbackWrap)
-            .catch(console.error);
-    }
-    else {
+            .catch(console.error)
+    } else {
         callbackWrap(undefined)
     }
 })
