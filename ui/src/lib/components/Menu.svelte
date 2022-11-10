@@ -23,7 +23,7 @@
     <ul class="menu-list">
       <li><a href="/login" use:active>Почта</a></li>
       <li><a href="/template" use:active>Шаблон</a></li>
-      <li><a href="/user_data">Данные пользователя</a></li>
+      <li><a href="/user_data" use:active>Данные пользователя</a></li>
     </ul>
   </aside>
 </div>
