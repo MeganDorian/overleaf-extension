@@ -61,20 +61,31 @@ let text = 'Здравствуйте! Отправляю ДЗ {num_hw}';
 
 let all_data = {
     'subjects':
-        [{ 'key': 'algo', 'name': subjects[0], 'msg_view': [] },
-        { 'key': 'diskr', 'name': subjects[1], 'msg_view': [] }
+        [
+            {
+                'key': 'algo',
+                'name': subjects[0],
+                'msg_view': [],
+                'num_hw': 1,
+            },
+            {
+                'key': 'diskr',
+                'name': subjects[1],
+                'msg_view': [],
+                'num_hw': 1,
+            },
         ],
-    'msg_body': 'Здравствуйте! Отправляю ДЗ {num_hw}'
+    'msg_body': 'Здравствуйте! Отправляю ДЗ {num_hw}',
+    'email': undefined,
+    'password': undefined,
+    'fio': undefined,
 }
 
+let j = 3
 for (let i = 0; i < 3; i++) {
-    let j = 3
     all_data.subjects[0].msg_view.push({ 'surname': fullnames[i], 'email': emails[i], 'topic': themes[i] })
     all_data.subjects[1].msg_view.push({ 'surname': fullnames[j], 'email': emails[j], 'topic': themes[j] })
     j++;
 }
-
-console.log(all_data.subjects[1])
-console.log(all_data.subjects[0])
 
 export const c_all_data = all_data
