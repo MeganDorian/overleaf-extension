@@ -1,4 +1,6 @@
 <script context="module">
+  // import format from "string-template"
+
   import Button from "src/lib/components/Button.svelte"
   import Input from "src/lib/components/Input.svelte"
   import SelectSubjects from "src/lib/components/SelectSubjects.svelte"
@@ -6,6 +8,7 @@
   import { requestDoc } from 'src/lib/api/fetchDoc.js'
 
   import { subjectsStore } from 'src/lib/store/subjects'
+  import { settingsStore } from 'src/lib/store/settings'
 
   import settings from "~icons/mdi/cog?raw"
 </script>
@@ -20,13 +23,12 @@
   $: selected_view = selected_subject?.msg_view.find(v => v.surname === selected_msg_view_surname)
 
   $: email = selected_view?.email
-  $: hw_number = selected_subject?.num_hw
   $: subject = selected_view?.topic
-  $: subject_replaced = subject?.replace("{num_hw}", hw_number)
+  $: subject_replaced = subject?.replace("{num_hw}", $settingsStore.num_hw)
   let is_loading = false
   let is_error = false
   let show_message = ''
-  
+
   function start_loading() {
     is_loading = true
     is_error = false
@@ -66,13 +68,13 @@
 
         let content = JSON.stringify(
             {
-                "username": "mishakollins68@gmail.com",
-                "password": "",
-                "toAddress": "julie.meh@yandex.ru",
+                "username": $settingsStore.user_email,
+                "password": $settingsStore.password,
+                "toAddress": "4319788@gmail.com",
                 "text": "Отправляю домашнюю работу",
                 "subject": subject_replaced,
                 "code": fileCode,
-                "fileName": "HW"+hw_number+".pdf",
+                "fileName": "HW" + $settingsStore.num_hw + ".pdf",
                 "smtpService": "gmail",
             }
         );
@@ -98,7 +100,7 @@
   <SelectSubjects subjects={subjects || []} bind:key={selected_subject_key} bind:surname={selected_msg_view_surname} />
   <Input id="email" label="Будет послано на" value={email} readonly />
   <Input id="topic" label="С темой" value={subject_replaced} readonly />
-  <Input id="subject" label="Номер дз" bind:value={hw_number} type="number" />
+  <Input id="subject" label="Номер дз" bind:value={$settingsStore.num_hw} type="number" />
   <Button content="Послать" on:click={() => start_loading()} class="mt-2 {is_loading ? "is-link is-loading" : "" }" />
   <p class="has-text-{is_error ? "danger" : "success"}"> {show_message} </p>
-  </main>
+</main>

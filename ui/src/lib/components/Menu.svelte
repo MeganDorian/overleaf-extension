@@ -2,7 +2,6 @@
     import { active } from 'tinro'
 
     import { subjectsStore } from 'src/lib/store/subjects'
-    import Button from 'src/lib/components/Button.svelte'
 </script>
 
 <script>
@@ -27,8 +26,6 @@
         </ul>
     </aside>
 </div>
-
-<Button content="Сохранить" on:click={() => alert('Hello')} class="mt-2" />
 
 <style>
     .sidebar {

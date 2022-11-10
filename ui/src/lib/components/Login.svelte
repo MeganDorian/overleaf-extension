@@ -3,8 +3,9 @@
 </script>
 
 <script>
-	let email = ''
-	let password = ''
+	export let email = ''
+	export let password = ''
+	export let smtpService = ''
 </script>
 
 <content>
@@ -19,13 +20,11 @@
 	<div class="block">
 		<label for="smtpService" class="has-text-weight-bold">Сервис</label>
 		<br>
-		<select name="smtpService" id="smtpService" >
+		<select name="smtpService" id="smtpService" bind:value={smtpService}>
 			<option value="gmail">Gmail</option>
 			<option value="yandex">Yandex</option>
 		</select>
 	</div>
 	<Input id="login-email" label="Ваша почта (логин)" type="email" bind:value={email} />
 	<Input id="login-email" label="Пароль приложения" type="password" bind:value={password} />
-
-	
 </content>

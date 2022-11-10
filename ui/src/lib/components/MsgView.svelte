@@ -12,7 +12,7 @@
     {#each (subject_views || []) as item}
         <h4 class="title is-4">
             {item.surname}
-            <button class="delete"></button>
+            <!-- <button class="delete"></button> -->
         </h4>
         <span class="label">Email</span>
         <p class="notification">
@@ -23,10 +23,5 @@
         <p class="notification">
             {item.topic}
         </p>
-
-<!--        <span class="label">Текст сообщения</span>-->
-<!--        <p class="notification">-->
-<!--            {$subjectsStore.msg_body}-->
-<!--        </p>-->
     {/each}
 </div>

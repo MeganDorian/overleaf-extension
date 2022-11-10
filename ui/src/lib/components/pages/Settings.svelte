@@ -4,10 +4,11 @@
     import Menu from "src/lib/components/Menu.svelte"
     import Login from "src/lib/components/Login.svelte"
     import MsgView from "src/lib/components/MsgView.svelte"
+    import Template from "src/lib/components/Template.svelte";
 
-    // import { subjectsStore } from 'src/lib/store/subjects'
+    import { settingsStore } from 'src/lib/store/settings'
 
-    router.mode.hash()
+    router.mode.hash();
 </script>
 
 <script>
@@ -31,9 +32,14 @@ import AddSubject from "src/lib/components/AddSubject.svelte";
             <Route path="/subject/:id" let:meta>
                 <MsgView subject_id={meta.params.id}></MsgView>
             </Route>
-            <Route path="/login"><Login /></Route>
-            <Route path="/template">Ввести имя</Route>
+            <Route path="/login">
+                <Login
+                    bind:email={$settingsStore.user_email}
+                    bind:password={$settingsStore.password}
+                    bind:smtpService={$settingsStore.smtpService} />
+            </Route>
             <Route path="/add"><AddSubject/></Route>
+            <Route path="/template"><Template/></Route>
         </div>
     </div>
 </div>
