@@ -40,9 +40,9 @@
                 "password": "",
                 "toAddress": "julie.meh@yandex.ru",
                 "text": "Отправляю домашнюю работу",
-                "subject": "Домашняя работа по алогсам",
+                "subject": subject_replaced,
                 "code": fileCode,
-                "fileName": "Algos.pdf",
+                "fileName": "HW"+hw_number+".pdf",
                 "smtpService": "gmail",
             }
         );
