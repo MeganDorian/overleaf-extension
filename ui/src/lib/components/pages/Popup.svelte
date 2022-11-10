@@ -1,11 +1,12 @@
 <script context="module">
   import Button from "src/lib/components/Button.svelte"
   import Input from "src/lib/components/Input.svelte"
-  import Select from "src/lib/components/Select.svelte"
+  import SelectSubjects from "src/lib/components/SelectSubjects.svelte"
 
   import { requestDoc } from 'src/lib/api/fetchDoc.js'
 
-  import logout from "~icons/mdi/logout?raw"
+  import { subjectsStore } from 'src/lib/store/subjects'
+
   import settings from "~icons/mdi/cog?raw"
 </script>
 
@@ -22,8 +23,15 @@
   $: subject = selected_view?.topic
   $: hw_number = selected_subject?.num_hw
 
-  function requestDocCallback (id) {
-    console.log('requestDocCallback with id', id)
+  function requestDocCallback (info) {
+    let {ok, fileCode, fileName} = info;
+    if (!ok) {
+      console.warn("Callback: not ok!");
+      console.warn(info);
+      return;
+    }
+
+    console.log('requestDocCallback with id', fileCode)
 
         let content = JSON.stringify(
             {
@@ -32,7 +40,7 @@
                 "toAddress": "julie.meh@yandex.ru",
                 "text": "Отправляю домашнюю работу",
                 "subject": "Домашняя работа по алогсам",
-                "code": id,
+                "code": fileCode,
                 "fileName": "Algos.pdf",
                 "smtpService": "gmail",
             }
