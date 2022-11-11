@@ -3,7 +3,10 @@
 </script>
 
 <script>
-  export let subjects, key, surname
+  export let subjects,
+    key,
+    surname,
+    disabled = false
 
   let selected = ''
   $: selected_keys = selected?.split(':') || ['', '']
@@ -19,4 +22,9 @@
   $: surname = selected_keys[1]
 </script>
 
-<Select {options} id="subjects" title="Преподаватель" bind:value={selected} />
+<Select
+  {options}
+  id="subjects"
+  title="Преподаватель"
+  bind:value={selected}
+  {disabled} />

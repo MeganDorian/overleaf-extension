@@ -117,19 +117,23 @@
     <SelectSubjects
       subjects={subjects || []}
       bind:key={selected_subject_key}
-      bind:surname={selected_msg_view_surname} />
+      bind:surname={selected_msg_view_surname}
+      disabled={is_loading} />
     <Input id="email" label="Будет послано на" value={email} readonly />
     <Input id="topic" label="С темой" value={topic_replaced} readonly />
     <Input
       id="subject"
       label="Номер дз"
       bind:value={$settingsStore.num_hw}
-      type="number" />
+      type="number"
+      readonly={is_loading} />
     <Button
       content="Послать"
       on:click={() => start_loading()}
-      class="mt-2 {is_subject_selected ? 'is-success' : ''} {is_loading ? 'is-warning is-loading' : ''}"
-      disabled="{!is_subject_selected}" />
+      class="mt-2 {is_subject_selected ? 'is-success' : ''} {is_loading
+        ? 'is-warning is-loading'
+        : ''}"
+      disabled={!is_subject_selected} />
     <p class="has-text-{is_error ? 'danger' : 'success'}">{show_message}</p>
   {/if}
 </main>
